@@ -10,7 +10,7 @@
     <li>
         <a class="load-spinner" href="">
             <div class="sidebar-icon">
-                <i class='bx bx-buildings'></i>
+                <i class='bx bx-sitemap'></i>
             </div>
             Clients
         </a>

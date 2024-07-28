@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4 text-center">
-                        <img src=""
+                        <img src="{{ app_asset('images/default.png') }}"
                             class="img-fluid" loading="lazy" alt="User Photo">
 
                         <div class="mt-2 mb-4"></div>
@@ -18,23 +18,15 @@
                             <table class="table table-borderless table-hover">
                                 <tr>
                                     <td>Name</td>
-                                    <td><b class="text-main">Sam</b></td>
-                                </tr>
-                                <tr>
-                                    <td>Identity Number</td>
-                                    <td>
-                                        <b class="text-main">
-                                            988
-                                        </b>
-                                    </td>
+                                    <td><b class="text-main">{{ auth()->user()->user_name ?? '-' }}</b></td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td><b class="text-main">sam@gmail.com</b></td>
+                                    <td><b class="text-main">{{ auth()->user()->user_email ?? '-' }}</b></td>
                                 </tr>
                                 <tr>
                                     <td>Phone Number</td>
-                                    <td><b class="text-main">999</b></td>
+                                    <td><b class="text-main">-</b></td>
                                 </tr>
                             </table>
                         </div>
@@ -44,7 +36,7 @@
             <div class="modal-footer d-flex align-items-center justify-content-between">
                 <a class="btn btn-main load-spinner"
                     href="">View Profile</a>
-                <a class="btn btn-danger load-spinner" href="">Logout</a>
+                <a class="btn btn-danger load-spinner" href="{{ route('logout') }}">Logout</a>
             </div>
         </div>
     </div>

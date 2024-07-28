@@ -9,6 +9,25 @@ if (! function_exists('checkRole')) {
     }
 }
 
+if (! function_exists('getRoleBadge')) {
+    function getRoleBadge(string $role): string
+    {
+        $badge = '';
+        
+        if ($role == 'superadmin') {
+            $badge = '<span class="badge bg-primary m-1">superadmin</span>';
+        } elseif ($role == 'hradmin') {
+            $badge = '<span class="badge bg-warning m-1">hradmin</span>';
+        } elseif ($role == 'supervisor') {
+            $badge = '<span class="badge bg-dark m-1">supervisor</span>';
+        } elseif ($role == 'employee') {
+            $badge = '<span class="badge bg-secondary m-1">employee</span>';
+        }
+
+        return $badge;
+    }
+}
+
 if (! function_exists('getRole')) {
     function getRole(): string
     {

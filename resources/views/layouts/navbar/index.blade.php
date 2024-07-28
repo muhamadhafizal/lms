@@ -16,15 +16,15 @@
                 <a class="nav-link nav-user" href="javascript:void(0);" data-bs-toggle="modal"
                     data-bs-target="#userModal">
                     <div class="img-container">
-                        <img src=""
+                        <img src="{{ app_asset('images/default.png') }}"
                             class="img-fluid" loading="lazy" alt="User Photo">
                     </div>
 
                     <div>
                         <span class="name text-capitalize">
-                            Sam
+                            {{ getShortName(auth()->user()->user_name) }}
                         </span><br>
-                        SuperAdmin
+                            {!! getRoleBadge(auth()->user()->getRoles()[0])!!}
                     </div>
                 </a>
             </li>
