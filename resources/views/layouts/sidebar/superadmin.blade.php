@@ -1,0 +1,34 @@
+<li class="">
+    <a class="load-spinner" href="">
+        <div class="sidebar-icon">
+            <i class="bx bxs-dashboard"></i>
+        </div>
+        Dashboard
+    </a>
+</li>
+<div class="seperator">Main</div>
+    <li>
+        <a class="load-spinner" href="">
+            <div class="sidebar-icon">
+                <i class='bx bx-buildings'></i>
+            </div>
+            Clients
+        </a>
+    </li>
+    <li>
+        <a class="load-spinner" href="">
+            <div class="sidebar-icon">
+                <i class='bx bx-buildings'></i>
+            </div>
+            Companies
+        </a>
+    </li>
+<div class="seperator">User</div>
+    <li class="">
+        <a class="load-spinner" href="">
+            <div class="sidebar-icon">
+                <i class="bx bx-user-check"></i>
+            </div>
+            Staff
+        </a>
+    </li>
