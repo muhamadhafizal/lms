@@ -3,25 +3,19 @@
 </div>
 
 <ul class="list-unstyled components" id="sidebar-list">
-    @include('layouts.sidebar.superadmin')
-   {{-- @if (checkRole('admin'))
-        @include('layouts.sidebar.admin')
+   @if (checkRole('superadmin'))
+        @include('layouts.sidebar.superadmin')
     @endif
 
-    @if (checkRole('landlord'))
-        @include('layouts.sidebar.landlord')
+    @if (checkRole('hradmin'))
+        @include('layouts.sidebar.hradmin')
     @endif
 
-    @if (checkRole('admin-maintenance'))
-        @include('layouts.sidebar.admin-maintenance')
+    @if (checkRole('supervisor'))
+        @include('layouts.sidebar.supervisor')
     @endif
 
-    @if (checkRole('technician'))
-        @include('layouts.sidebar.technician')
+    @if (checkRole('employee'))
+        @include('layouts.sidebar.employee')
     @endif
-
-    @if (checkRole('user'))
-        @include('layouts.sidebar.user')
-    @endif
-    --}} 
 </ul>
