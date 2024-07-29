@@ -1,0 +1,32 @@
+<?php
+
+if (! function_exists('getClientStatus')) {
+    function getClientStatus(string $is_active): string
+    {
+        $badge = '';
+
+        if ($is_active) {
+            $badge = '<span class="badge alert alert-success">Active</span>';
+        } else {
+            $badge = '<span class="badge alert alert-danger">Inactive</span>';
+        }
+
+        return $badge;
+    }
+}
+
+if (! function_exists('getClientSubscribed')) {
+    function getClientSubscribed(string $is_subscribed): string
+    {
+        $badge = '';
+
+        if ($is_subscribed) {
+            $badge = '<span class="badge alert alert-success">Subscribed</span>';
+        } else {
+            $badge = '<span class="badge alert alert-danger">Unsubscribed</span>';
+        }
+
+        return $badge;
+    }
+}
+

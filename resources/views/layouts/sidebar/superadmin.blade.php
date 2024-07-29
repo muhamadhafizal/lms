@@ -1,5 +1,5 @@
 <li class="">
-    <a class="load-spinner" href="">
+    <a class="load-spinner" href="{{ route('superadmin.index') }}">
         <div class="sidebar-icon">
             <i class="bx bxs-dashboard"></i>
         </div>
@@ -8,7 +8,7 @@
 </li>
 <div class="seperator">Main</div>
     <li>
-        <a class="load-spinner" href="">
+        <a class="load-spinner" href="{{ route('superadmin.client.index') }}">
             <div class="sidebar-icon">
                 <i class='bx bx-sitemap'></i>
             </div>
@@ -16,7 +16,7 @@
         </a>
     </li>
     <li>
-        <a class="load-spinner" href="">
+        <a class="load-spinner" href="{{ route('superadmin.company.index') }}">
             <div class="sidebar-icon">
                 <i class='bx bx-buildings'></i>
             </div>

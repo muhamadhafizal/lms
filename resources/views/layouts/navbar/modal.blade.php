@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4 text-center">
-                        <img src="{{ app_asset('images/default.png') }}"
+                        <img src="{{ app_asset('images/avatar.png') }}"
                             class="img-fluid" loading="lazy" alt="User Photo">
 
                         <div class="mt-2 mb-4"></div>

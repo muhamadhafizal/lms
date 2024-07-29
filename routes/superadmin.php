@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\SuperAdmin\DashboardController;
+use App\Http\Controllers\SuperAdmin\ClientController;
+use App\Http\Controllers\Superadmin\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +16,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('superadmin')->name('superadmin.')->middleware(['auth','superadmin'])->group(function(){
+Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin.')->group(function(){
+     
     //dashboard
-    Route::controller(DashboardController::class)->group(function (){
+     Route::controller(DashboardController::class)->group(function (){
         Route::name('index')->get('/','index');
         Route::name('show')->get('/show','index');
     });
+
+    Route::name('client.')->prefix('client')->group(function (){
+        Route::controller(ClientController::class)->group(function (){
+            Route::name('index')->get('/','index');
+            Route::name('add')->get('/add','add');
+            Route::name('store')->post('/store','store');
+            Route::name('view')->get('/view/{client}','view');
+            Route::name('edit')->get('/edit/{client}', 'edit');
+            Route::name('update')->post('/update/{client}', 'update');
+        });
+    });
+
+    Route::name('company.')->prefix('company')->group(function (){
+        Route::controller(CompanyController::class)->group(function (){
+            Route::name('index')->get('/','index');
+        });
+    });
+
 });
+
 
 
 
