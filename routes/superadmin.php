@@ -3,6 +3,7 @@
 use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\ClientController;
 use App\Http\Controllers\Superadmin\CompanyController;
+use App\Http\Controllers\Superadmin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,9 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
 
     Route::name('client.')->prefix('client')->group(function (){
         Route::controller(ClientController::class)->group(function (){
-            Route::name('index')->get('/','index');
-            Route::name('add')->get('/add','add');
-            Route::name('store')->post('/store','store');
+            Route::name('index')->get('/', 'index');
+            Route::name('add')->get('/add', 'add');
+            Route::name('store')->post('/store', 'store');
             Route::name('view')->get('/view/{client}','view');
             Route::name('edit')->get('/edit/{client}', 'edit');
             Route::name('update')->post('/update/{client}', 'update');
@@ -37,7 +38,18 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
 
     Route::name('company.')->prefix('company')->group(function (){
         Route::controller(CompanyController::class)->group(function (){
-            Route::name('index')->get('/','index');
+            Route::name('index')->get('/', 'index');
+            Route::name('add')->get('/add', 'add');
+            Route::name('store')->post('/store', 'store');
+            Route::name('view')->get('/view/{company}', 'view');
+            Route::name('edit')->get('/edit/{company}', 'edit');
+            Route::name('update')->post('update/{company}', 'update');
+        });
+    });
+
+    Route::name('user.')->prefix('user')->group(function (){
+        Route::controller(UserController::class)->group(function (){
+            
         });
     });
 

@@ -23,12 +23,20 @@
             Companies
         </a>
     </li>
-<div class="seperator">User</div>
+<div class="seperator">Users</div>
     <li class="">
         <a class="load-spinner" href="">
             <div class="sidebar-icon">
                 <i class="bx bx-user-check"></i>
             </div>
-            Staff
+            Central HR Staff
+        </a>
+    </li>
+    <li class="">
+        <a class="load-spinner" href="">
+            <div class="sidebar-icon">
+                <i class="bx bx-group"></i>
+            </div>
+            Employees
         </a>
     </li>

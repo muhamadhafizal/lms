@@ -12,7 +12,8 @@ class ClientController extends Controller
 {
     public function index(Request $request)
     {
-        $clients = Client::search($request)
+        $clients = Client::withCount('companies')
+            ->search($request)
             ->latest()
             ->paginate(20)
             ->withQueryString();

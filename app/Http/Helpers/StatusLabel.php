@@ -1,7 +1,7 @@
 <?php
 
-if (! function_exists('getClientStatus')) {
-    function getClientStatus(string $is_active): string
+if (! function_exists('getIsActiveStatus')) {
+    function getIsActiveStatus(string $is_active): string
     {
         $badge = '';
 

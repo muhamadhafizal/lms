@@ -31,11 +31,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Active</td>
-                        <td><b class="text-main"> {!! getClientStatus($client->is_active) !!}</b>
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Contact</td>
                         <td><b class="text-main">{{ $client->contact ?? '-' }}</b>
                         </td>
@@ -108,6 +103,11 @@
                     <tr>
                         <td>Logo Client</td>
                         <td><b class="text-main">{{ $client->logo_file_name ?? '-' }}</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Active</td>
+                        <td><b class="text-main"> {!! getIsActiveStatus($client->is_active) !!}</b>
                         </td>
                     </tr>
                     <tr>

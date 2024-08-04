@@ -34,8 +34,8 @@
                             <tr>
                                 <th>#</th>
                                 <th class="text-center">Name</th>
-                                <th class="text-center">Contact</th>
-                                <th class="text-center">Email</th>
+                                <th class="text-center">Companies</th>
+                                <th class="text-center">Staff</th>
                                 <th class="text-center">Reg. Date</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>
@@ -46,10 +46,10 @@
                                 <tr>
                                     <td>{{ $clients->firstItem() + $key }}</td>
                                     <td class="text-center">{{ $client->name ?? '-' }}</td>
-                                    <td class="text-center">{{ $client->contact ?? '-' }}</td>
-                                    <td class="text-center">{{ $client->email ?? '-' }}</td>
+                                    <td class="text-center">{{ $client->companies_count ?? '-' }}</td>
+                                    <td class="text-center">{{ '-' }}</td>
                                     <td class="text-center">{{ $client->registration_date ?? '-' }}</td>
-                                    <td class="text-center">{!! getClientStatus($client->is_active) !!}</td>
+                                    <td class="text-center">{!! getIsActiveStatus($client->is_active) !!}</td>
                                     <td class="text-center">
                                         <a href="{{ route('superadmin.client.view', $client) }}"
                                             class="btn btn-outline-main" data-bs-toggle="tooltip" data-bs-placement="bottom"
