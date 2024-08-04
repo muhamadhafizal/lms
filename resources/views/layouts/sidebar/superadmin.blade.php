@@ -25,7 +25,7 @@
     </li>
 <div class="seperator">Users</div>
     <li class="">
-        <a class="load-spinner" href="">
+        <a class="load-spinner" href="{{ route('superadmin.user.index') }}">
             <div class="sidebar-icon">
                 <i class="bx bx-user-check"></i>
             </div>

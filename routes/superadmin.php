@@ -49,7 +49,10 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
 
     Route::name('user.')->prefix('user')->group(function (){
         Route::controller(UserController::class)->group(function (){
-            
+            Route::name('index')->get('/', 'index');  
+            Route::name('store')->post('/store', 'store');
+            Route::name('update')->post('/update/{user}', 'update'); 
+            Route::name('updatepassword')->post('/updatepassword/{user}', 'updatepassword');
         });
     });
 
