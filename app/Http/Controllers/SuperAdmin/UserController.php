@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Superadmin\User\StoreRequest;
 use App\Http\Requests\Superadmin\User\UpdatePasswordRequest;
 use App\Http\Requests\Superadmin\User\UpdateRequest;
+use App\Http\Services\GeneratePasswordService;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Silber\Bouncer\Bouncer;
+use Illuminate\Support\Facades\Log;
+use Exception;
+use Mail;
+use App\Mail\SendStaffWelcomeEmail;
+
 
 class UserController extends Controller
 {
@@ -27,11 +31,31 @@ class UserController extends Controller
 
     public function store(StoreRequest $request)
     {
+        //password set dumy
+        $plainpassword = generateToken(5);
+        
+        //send email notification
+        try {
+           
+            Mail::to($request->user_email)
+                ->send(new SendStaffWelcomeEmail($request->user_email, $plainpassword, $request->user_name));
+            
+        } catch (Exception) {
+
+            $error_message = 'There was an error accessing the SMTP server. Please contact your system administrator for assistance.';
+
+            return back()
+                ->with('errorMessage', $error_message)
+                ->withInput();
+        }
+      
+        $password = GeneratePasswordService::getPassword($plainpassword);
+
         $user = User::create([
             'user_name' => $request->user_name,
             'user_email' => $request->user_email,
             'user_language' => $request->user_language,
-            'password' => Hash::make('superadmin@1234'), 
+            'password' => $password, 
             'email_verified_at' => now(),
         ]);
 
