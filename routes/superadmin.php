@@ -53,6 +53,7 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
             Route::name('store')->post('/store', 'store');
             Route::name('update')->post('/update/{user}', 'update'); 
             Route::name('updatepassword')->post('/updatepassword/{user}', 'updatepassword');
+            Route::name('resend')->post('/resend/{user}', 'resend');
         });
     });
 

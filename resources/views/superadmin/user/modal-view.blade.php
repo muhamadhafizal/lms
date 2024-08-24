@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-main" data-bs-dismiss="modal"
+                <button type="button" class="form-control btn btn-main" data-bs-dismiss="modal"
                 aria-label="Close">Close</button>
             </div>
         </div>

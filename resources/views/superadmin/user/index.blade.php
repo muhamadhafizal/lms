@@ -57,10 +57,10 @@
                                             class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#edit-staff-modal-{{ $key }}"><i 
                                                 class="bx bxs-pencil"></i></a>
                                             @include ('superadmin.user.modal-edit')
-                                        <a href=""
-                                            class="btn btn-outline-secondary" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom" title="Resend Invitation"><i
+                                        <a href="#"
+                                            class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#resend-staff-modal-{{ $key }}"><i
                                             class="bx bx-refresh"></i></a>
+                                            @include ('superadmin.user.modal-resend')
                                     </td>
                                 </tr>
                             @endforeach

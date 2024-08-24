@@ -73,7 +73,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12 d-flex justify-content-center">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <button type="submit" class="form-control btn btn-primary">Update</button>
                                     </div>   
@@ -114,7 +114,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12 d-flex justify-content-center">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <button type="submit" class="form-control btn btn-primary">Update Password</button>
                                     </div>   

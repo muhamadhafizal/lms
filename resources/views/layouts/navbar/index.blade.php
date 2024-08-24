@@ -16,8 +16,7 @@
                 <a class="nav-link nav-user" href="javascript:void(0);" data-bs-toggle="modal"
                     data-bs-target="#userModal">
                     <div class="img-container">
-                        <img src="{{ app_asset('images/avatar.png') }}"
-                            class="img-fluid" loading="lazy" alt="User Photo">
+                      
                     </div>
 
                     <div>

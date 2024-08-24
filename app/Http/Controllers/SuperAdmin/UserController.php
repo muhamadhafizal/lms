@@ -84,4 +84,33 @@ class UserController extends Controller
 
         return redirect()->back()->with('successMessage', 'Successfully update password user');
     }
+
+    public function resend(User $user)
+    {
+         //password set dumy
+         $plainpassword = generateToken(5);
+        
+         //send email notification
+         try {
+            
+             Mail::to($user->user_email)
+                 ->send(new SendStaffWelcomeEmail($user->user_email, $plainpassword, $user->user_name));
+             
+         } catch (Exception) {
+ 
+             $error_message = 'There was an error accessing the SMTP server. Please contact your system administrator for assistance.';
+ 
+             return back()
+                 ->with('errorMessage', $error_message)
+                 ->withInput();
+         }
+       
+         $password = GeneratePasswordService::getPassword($plainpassword);
+
+         $user->update([
+             'password' => $password, 
+         ]);
+
+        return redirect()->back()->with('successMessage', 'Successfully resend email verification');
+    }
 }
