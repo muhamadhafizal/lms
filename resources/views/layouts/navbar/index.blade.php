@@ -12,13 +12,8 @@
 
         <ul class="list-unstyled justify-content-end navbar-right">
           
-            <li class="nav-item">
-                <a class="nav-link nav-user" href="javascript:void(0);" data-bs-toggle="modal"
-                    data-bs-target="#userModal">
-                    <div class="img-container">
-                      
-                    </div>
-
+            <li class="nav-item dropdown">
+            <a class="nav-link nav-user" href="javascript:void(0);" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
                     <div>
                         <span class="name text-capitalize">
                             {{ getShortName(auth()->user()->user_name) }}
@@ -26,6 +21,11 @@
                             {!! getRoleBadge(auth()->user()->getRoles()[0])!!}
                     </div>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    <li><a class="dropdown-item load-spinner" role="button" href="{{ route('profile.show') }}">View Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item load-spinner" href="{{ route('logout') }}">Logout</a></li>
+                </ul>
             </li>
         </ul>
     </div>

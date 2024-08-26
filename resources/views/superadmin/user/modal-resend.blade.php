@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-bottom">
-                <h1 class="modal-title fs-5">Resend Email</h1>
+                <h1 class="modal-title fs-5">Resend Invitation</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('superadmin.user.resend', $staff) }}" method="post">

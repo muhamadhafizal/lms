@@ -8,3 +8,4 @@ include_once __DIR__.'/superadmin.php';
 include_once __DIR__.'/hradmin.php';
 include_once __DIR__.'/supervisor.php';
 include_once __DIR__.'/employee.php';
+include_once __DIR__.'/general.php';
