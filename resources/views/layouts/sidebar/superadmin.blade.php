@@ -40,3 +40,12 @@
             Employees
         </a>
     </li>
+<div class="seperator">Log</div>
+    <li class="">
+        <a class="load-spinner" href="{{ route('superadmin.activity-log.index') }}">
+            <div class="sidebar-icon">
+             <i class='bx bxs-user-detail'></i>
+            </div>
+            User Activity
+        </a>
+    </li>

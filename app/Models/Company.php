@@ -6,10 +6,38 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Company extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logOnly([
+            'name',
+            'former_name',
+            'roc_one',
+            'roc_two',
+            'contact',
+            'fax',
+            'email',
+            'person_name',
+            'person_nric',
+            'person_designation',
+            'person_email',
+            'person_contact',
+            'registration_date',
+            'invoice_date',
+            'next_renewal_date',
+            'is_active',
+        ])
+        ->useLogName('company')
+        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName}");
+        // Chain fluent methods for configuration options
+    }
 
     protected $fillable = [
         'client_id',

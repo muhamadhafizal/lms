@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Supervisor\DashboardController;
+use App\Http\Controllers\General\ActivityLogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,12 @@ Route::prefix('supervisor')->name('supervisor.')->middleware(['auth','supervisor
     Route::controller(DashboardController::class)->group(function (){
         Route::name('index')->get('/','index');
         Route::name('show')->get('/show','index');
+    });
+
+    Route::name('activity-log.')->prefix('activity-log')->group(function (){
+        Route::controller(ActivityLogController::class)->group(function (){
+            Route::name('index')->get('/', 'index');
+        });
     });
 });
 

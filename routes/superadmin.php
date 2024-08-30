@@ -4,6 +4,7 @@ use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\ClientController;
 use App\Http\Controllers\Superadmin\CompanyController;
 use App\Http\Controllers\Superadmin\UserController;
+use App\Http\Controllers\General\ActivityLogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +58,11 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
         });
     });
 
+    Route::name('activity-log.')->prefix('activity-log')->group(function (){
+        Route::controller(ActivityLogController::class)->group(function (){
+            Route::name('index')->get('/', 'index');
+        });
+    });
 });
 
 
