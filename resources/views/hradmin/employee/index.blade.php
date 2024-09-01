@@ -19,7 +19,7 @@
                     </form>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-lg-end justify-content-md-start justify-content-center flex-md-row flex-column">
-                    <a href="{{ route('superadmin.employee.add') }}" class="btn btn-main pt-2 pb-2 px-3 load-spinner">New
+                    <a href="{{ route('hradmin.employee.add') }}" class="btn btn-main pt-2 pb-2 px-3 load-spinner">New
                         Employee</a>
                 </div>
             </div>
@@ -61,16 +61,16 @@
                                     <td class="text-center">{!! getRoleBadge($employee->getRoles()[0]) !!}</td>
                                     <td class="text-center">{!! getIsActiveStatus($employee->user_status) !!}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('superadmin.employee.view', $employee) }}"
+                                        <a href="{{ route('hradmin.employee.view', $employee) }}"
                                                 class="btn btn-outline-main" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 title="Client Details"><i class="bx bxs-show"></i></a>
-                                        <a href="{{ route('superadmin.employee.edit', $employee) }}"
+                                        <a href="{{ route('hradmin.employee.edit', $employee) }}"
                                             class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit Client Details"><i 
                                                 class="bx bxs-pencil"></i></a>
                                         <a href="#"
                                             class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#resend-employee-modal-{{ $key }}"><i
                                             class="bx bx-refresh"></i></a>
-                                            @include ('superadmin.employee.modal-resend')
+                                            @include ('hradmin.employee.modal-resend')
                                     </td>
                                 </tr>
                             @endforeach
