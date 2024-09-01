@@ -64,9 +64,27 @@ class User extends Authenticatable
         ];
     }
 
-     // Define the polymorphic relationship
-     public function activities()
-     {
-         return $this->hasMany(Activity::class,'causer_id');
-     }
+    // Define the polymorphic relationship
+    public function activities()
+    {
+        return $this->hasMany(Activity::class,'causer_id');
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class)->withTimestamps();
+    }
+
+    public function scopeRole($query, $roles)
+    {
+        $query = $query->whereHas('roles', function ($q) use ($roles) {
+            if (is_array($roles)) {
+                $q->whereIn('name', $roles);
+            } else {
+                $q->where('name', $roles);
+            }
+        });
+
+        return $query;
+    }
 }

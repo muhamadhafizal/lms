@@ -72,6 +72,11 @@ class Company extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
     public function scopeSearch(Builder $query): void
     {
         

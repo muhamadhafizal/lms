@@ -17,11 +17,11 @@ if (! function_exists('getRoleBadge')) {
         if ($role == 'superadmin') {
             $badge = '<span class="badge bg-primary m-1">superadmin</span>';
         } elseif ($role == 'hradmin') {
-            $badge = '<span class="badge bg-warning m-1">hradmin</span>';
+            $badge = '<span class="badge bg-success m-1">hradmin</span>';
         } elseif ($role == 'supervisor') {
-            $badge = '<span class="badge bg-dark m-1">supervisor</span>';
+            $badge = '<span class="badge bg-info m-1">supervisor</span>';
         } elseif ($role == 'employee') {
-            $badge = '<span class="badge bg-secondary m-1">employee</span>';
+            $badge = '<span class="badge bg-warning m-1">employee</span>';
         }
 
         return $badge;

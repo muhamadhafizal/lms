@@ -33,7 +33,7 @@
         </a>
     </li>
     <li class="">
-        <a class="load-spinner" href="">
+        <a class="load-spinner" href="{{ route('superadmin.employee.index') }}">
             <div class="sidebar-icon">
                 <i class="bx bx-group"></i>
             </div>

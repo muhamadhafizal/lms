@@ -5,6 +5,7 @@ use App\Http\Controllers\SuperAdmin\ClientController;
 use App\Http\Controllers\Superadmin\CompanyController;
 use App\Http\Controllers\Superadmin\UserController;
 use App\Http\Controllers\General\ActivityLogController;
+use App\Http\Controllers\SuperAdmin\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,19 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
         });
     });
 
+    Route::name('employee.')->prefix('employee')->group(function (){
+        Route::controller(EmployeeController::class)->group(function (){
+            Route::name('index')->get('/', 'index');
+            Route::name('add')->get('/add', 'add');
+            Route::name('store')->post('/store', 'store');
+            Route::name('view')->get('/view/{employee}', 'view');
+            Route::name('edit')->get('/edit/{employee}', 'edit');
+            Route::name('update')->post('/update/{employee}', 'update');
+            Route::name('resend')->post('/resend/{employee}', 'resend');
+        });
+    });
+
+    //Activity Log
     Route::name('activity-log.')->prefix('activity-log')->group(function (){
         Route::controller(ActivityLogController::class)->group(function (){
             Route::name('index')->get('/', 'index');

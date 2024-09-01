@@ -19,9 +19,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $staffs = User::whereHas('roles', function ($query){
-                $query->where('name','superadmin');
-            })
+        $staffs = User::role(['superadmin'])
             ->latest()
             ->paginate(20)
             ->withQueryString();
