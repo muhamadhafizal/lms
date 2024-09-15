@@ -31,4 +31,9 @@ class Qualification extends Model
         'description',
         'active',
     ];
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }

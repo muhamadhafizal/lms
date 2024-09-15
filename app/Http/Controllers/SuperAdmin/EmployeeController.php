@@ -13,7 +13,10 @@ use Exception;
 use Mail;
 use App\Mail\SendStaffWelcomeEmail;
 use App\Http\Services\GeneratePasswordService;
+use App\Http\Services\SettingService;
+use App\Models\Employee;
 use App\Models\User;
+use Database\Seeders\SettingSeeder;
 use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
@@ -31,6 +34,7 @@ class EmployeeController extends Controller
 
     public function add()
     {
+        $settings = SettingService::getSettings();
 
         $clients = Client::where('is_active', 1)
             ->where('is_subscribed', 1)
@@ -43,7 +47,7 @@ class EmployeeController extends Controller
             ->get();
 
 
-        return view('superadmin.employee.add', compact('clients', 'companies', 'roles'));
+        return view('superadmin.employee.add', compact('clients', 'companies', 'roles','settings'));
     }
 
     public function store(StoreRequest $request)
@@ -81,6 +85,22 @@ class EmployeeController extends Controller
                 'email_verified_at' => now(),
             ]);
 
+            //store employee
+            Employee::create([
+                'user_id' => $user->id,
+                'race_id' => $request->race,
+                'religion_id' => $request->religion,
+                'nationality_id' => $request->nationality,
+                'work_location_id' => $request->workLocation,
+                'cost_centre_id' => $request->costCentre,
+                'department_id' => $request->department,
+                'section_id' => $request->section,
+                'category_id' => $request->category,
+                'job_grade_id' => $request->jobGrade,
+                'business_unit_id' => $request->businessUnit,
+                'qualification_id' => $request->qualification,
+            ]);
+
             //store role
             $user->assign($request->role);
 
@@ -94,11 +114,28 @@ class EmployeeController extends Controller
 
     public function view(User $employee)
     {
+        $employee = $employee->load([
+            'employee',
+            'employee.race',
+            'employee.religion',
+            'employee.nationality',
+            'employee.workLocation',
+            'employee.costCentre',
+            'employee.department',
+            'employee.section',
+            'employee.category',
+            'employee.jobGrade',
+            'employee.businessUnit',
+            'employee.qualification',
+        ]);
+      
         return view('superadmin.employee.view', compact('employee'));
     }
 
     public function edit(User $employee)
     {
+        $settings = SettingService::getSettings();
+
         $clients = Client::where('is_active', 1)
             ->where('is_subscribed', 1)
             ->get();
@@ -109,7 +146,7 @@ class EmployeeController extends Controller
         $roles = Role::where('name', '!=', 'superadmin')
             ->get();
 
-        return view('superadmin.employee.edit', compact('employee','clients', 'companies', 'roles'));
+        return view('superadmin.employee.edit', compact('employee','clients', 'companies', 'roles','settings'));
     }
 
     public function update(UpdateRequest $request, User $employee)
@@ -118,6 +155,20 @@ class EmployeeController extends Controller
             'user_name' => $request->user_name,
             'user_email' => $request->user_email,
             'user_language' => $request->user_language,
+        ]);
+
+        $employee->employee->update([
+            'race_id' => $request->race,
+            'religion_id' => $request->religion,
+            'nationality_id' => $request->nationality,
+            'work_location_id' => $request->workLocation,
+            'cost_centre_id' => $request->costCentre,
+            'department_id' => $request->department,
+            'section_id' => $request->section,
+            'category_id' => $request->category,
+            'job_grade_id' => $request->jobGrade,
+            'business_unit_id' => $request->businessUnit,
+            'qualification_id' => $request->qualification,
         ]);
 
         $employee->roles()->sync($request->role);

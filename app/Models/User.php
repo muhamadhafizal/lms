@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Company::class)->withTimestamps();
     }
 
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
     public function scopeRole($query, $roles)
     {
         $query = $query->whereHas('roles', function ($q) use ($roles) {

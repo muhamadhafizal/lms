@@ -27,4 +27,9 @@ class Race extends Model
         'name',
         'active',
     ];
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }
