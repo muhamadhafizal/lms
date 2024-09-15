@@ -146,6 +146,21 @@ class EmployeeController extends Controller
         $roles = Role::where('name', '!=', 'superadmin')
             ->get();
 
+        $employee = $employee->load([
+            'employee',
+            'employee.race',
+            'employee.religion',
+            'employee.nationality',
+            'employee.workLocation',
+            'employee.costCentre',
+            'employee.department',
+            'employee.section',
+            'employee.category',
+            'employee.jobGrade',
+            'employee.businessUnit',
+            'employee.qualification',
+        ]);
+
         return view('superadmin.employee.edit', compact('employee','clients', 'companies', 'roles','settings'));
     }
 

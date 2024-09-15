@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\HRAdmin\Employee\StoreRequest;
 use App\Http\Requests\HRAdmin\Employee\UpdateRequest;
 use App\Http\Services\GeneratePasswordService;
+use App\Http\Services\SettingService;
 use App\Mail\SendStaffWelcomeEmail;
+use App\Models\Employee;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
@@ -32,15 +34,32 @@ class EmployeeController extends Controller
 
     public function view(User $employee)
     {
+        $employee = $employee->load([
+                'employee',
+                'employee.race',
+                'employee.religion',
+                'employee.nationality',
+                'employee.workLocation',
+                'employee.costCentre',
+                'employee.department',
+                'employee.section',
+                'employee.category',
+                'employee.jobGrade',
+                'employee.businessUnit',
+                'employee.qualification',
+            ]);
+
         return view('hradmin.employee.view', compact('employee'));
     }
 
     public function add()
     {
+        $settings = SettingService::getSettings();
+
         $roles = Role::where('name', '!=', 'superadmin')
             ->get();
 
-        return view('hradmin.employee.add', compact('roles'));
+        return view('hradmin.employee.add', compact('roles','settings'));
     }
 
     public function store(StoreRequest $request)
@@ -81,6 +100,22 @@ class EmployeeController extends Controller
                 'email_verified_at' => now(),
             ]);
 
+            //store employee
+            Employee::create([
+                'user_id' => $user->id,
+                'race_id' => $request->race,
+                'religion_id' => $request->religion,
+                'nationality_id' => $request->nationality,
+                'work_location_id' => $request->workLocation,
+                'cost_centre_id' => $request->costCentre,
+                'department_id' => $request->department,
+                'section_id' => $request->section,
+                'category_id' => $request->category,
+                'job_grade_id' => $request->jobGrade,
+                'business_unit_id' => $request->businessUnit,
+                'qualification_id' => $request->qualification,
+            ]);
+
             //store role
             $user->assign($request->role);
 
@@ -93,11 +128,28 @@ class EmployeeController extends Controller
     }
 
     public function edit(User $employee)
-    {        
+    {     
+        $settings = SettingService::getSettings();
+        
         $roles = Role::where('name', '!=', 'superadmin')
             ->get();
+        
+        $employee = $employee->load([
+                'employee',
+                'employee.race',
+                'employee.religion',
+                'employee.nationality',
+                'employee.workLocation',
+                'employee.costCentre',
+                'employee.department',
+                'employee.section',
+                'employee.category',
+                'employee.jobGrade',
+                'employee.businessUnit',
+                'employee.qualification',
+            ]);
 
-        return view('hradmin.employee.edit', compact('employee','roles'));
+        return view('hradmin.employee.edit', compact('employee','roles','settings'));
     }
 
     public function update(UpdateRequest $request, User $employee)
@@ -106,6 +158,20 @@ class EmployeeController extends Controller
             'user_name' => $request->user_name,
             'user_email' => $request->user_email,
             'user_language' => $request->user_language,
+        ]);
+
+        $employee->employee->update([
+            'race_id' => $request->race,
+            'religion_id' => $request->religion,
+            'nationality_id' => $request->nationality,
+            'work_location_id' => $request->workLocation,
+            'cost_centre_id' => $request->costCentre,
+            'department_id' => $request->department,
+            'section_id' => $request->section,
+            'category_id' => $request->category,
+            'job_grade_id' => $request->jobGrade,
+            'business_unit_id' => $request->businessUnit,
+            'qualification_id' => $request->qualification,
         ]);
 
         $employee->roles()->sync($request->role);

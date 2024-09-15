@@ -49,10 +49,10 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-6 col-md-3">
-                        <label for="form-label">Language</label>
+                        <label for="form-label">Role</label>
                     </div>
                     <div class="col-6 col-md-3">
-                        <b class="text-main">{{ $employee->user_language ?? '-' }}</b>
+                        <b class="text-main">{!! getRoleBadge($employee->getRoles()[0]) !!}</b>
                     </div>
                     <div class="col-6 col-md-3">
                         <label for="form-label">Status</label>
@@ -63,10 +63,86 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-6 col-md-3">
-                        <label for="form-label">Role</label>
+                        <label for="form-label">Language</label>
                     </div>
                     <div class="col-6 col-md-3">
-                        <b class="text-main">{!! getRoleBadge($employee->getRoles()[0]) !!}</b>
+                        <b class="text-main">{{ $employee->user_language ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Race</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->race->name ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Religion</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->religion->name ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Nationality</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->nationality->name ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Work Location</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->workLocation->name ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Cost Centre</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->costCentre->name ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Department</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->department->name ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Section</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->section->name ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Category</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->category->name ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Job Grade</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->jobGrade->name ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Business Unit</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->businessUnit->name ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Qualification</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->qualification->name ?? '-' }}</b>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -29,6 +30,12 @@ class UserSeeder extends Seeder
             ]
         );
 
+        $superadminEmployee = Employee::updateOrCreate(
+            [
+                'user_id' => $superadmin->id
+            ]
+        );
+
         Bouncer::assign('superadmin')->to($superadmin);
 
         // Create or update the HR admin user
@@ -41,6 +48,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('hradmin@1234'), 
                 'user_language' => 'English',
                 'email_verified_at' => now(),
+            ]
+        );
+
+        $hradminEmployee = Employee::updateOrCreate(
+            [
+                'user_id' => $hradmin->id
             ]
         );
 
@@ -59,6 +72,12 @@ class UserSeeder extends Seeder
             ]
         );
 
+        $supervisorEmployee = Employee::updateOrCreate(
+            [
+                'user_id' => $supervisor->id
+            ]
+        );
+
         Bouncer::assign('supervisor')->to($supervisor);
 
         // Create or update the employee user
@@ -71,6 +90,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('employee@1234'), 
                 'user_language' => 'English',
                 'email_verified_at' => now(),
+            ]
+        );
+
+        $employee = Employee::updateOrCreate(
+            [
+                'user_id' => $employee->id
             ]
         );
 

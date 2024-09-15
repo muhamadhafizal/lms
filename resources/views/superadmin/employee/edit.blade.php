@@ -128,7 +128,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['races'] as $race)
                                     <option value="{{ $race->id }}"
-                                        {{ old('race', optional($employee->employee->race)->id) == $race->id ? 'selected' : '' }}>
+                                        {{ old('race', optional(optional($employee->employee)->race)->id) == $race->id ? 'selected' : '' }}>
                                         {{ $race->name }}
                                     </option>
                                 @endforeach
@@ -148,7 +148,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['religions'] as $religion)
                                     <option value="{{ $religion->id }}"
-                                        {{ old('religion', optional($employee->employee->religion)->id) == $religion->id ? 'selected' : '' }}>
+                                        {{ old('religion', optional(optional($employee->employee)->religion)->id) == $religion->id ? 'selected' : '' }}>
                                         {{ $religion->name }}
                                     </option>
                                 @endforeach
@@ -168,7 +168,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['nationalities'] as $nationality)
                                     <option value="{{ $nationality->id }}"
-                                        {{ old('nationality', optional($employee->employee->nationality)->id) == $nationality->id ? 'selected' : '' }}>
+                                        {{ old('nationality', optional(optional($employee->employee)->nationality)->id) == $nationality->id ? 'selected' : '' }}>
                                         {{ $nationality->name }}
                                     </option>
                                 @endforeach
@@ -188,7 +188,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['workLocations'] as $workLocation)
                                     <option value="{{ $workLocation->id }}"
-                                        {{ old('workLocation', optional($employee->employee->workLocation)->id) == $workLocation->id ? 'selected' : '' }}>
+                                        {{ old('workLocation', optional(optional($employee->employee)->workLocation)->id) == $workLocation->id ? 'selected' : '' }}>
                                         {{ $workLocation->name }}
                                     </option>
                                 @endforeach
@@ -208,7 +208,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['costCentres'] as $costCentre)
                                     <option value="{{ $costCentre->id }}"
-                                        {{ old('costCentre', optional($employee->employee->costCentre)->id) == $costCentre->id ? 'selected' : '' }}>
+                                        {{ old('costCentre', optional(optional($employee->employee)->costCentre)->id) == $costCentre->id ? 'selected' : '' }}>
                                         {{ $costCentre->name }}
                                     </option>
                                 @endforeach
@@ -228,7 +228,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['departments'] as $department)
                                     <option value="{{ $department->id }}"
-                                        {{ old('department', optional($employee->employee->department)->id) == $department->id ? 'selected' : '' }}>
+                                        {{ old('department', optional(optional($employee->employee)->department)->id) == $department->id ? 'selected' : '' }}>
                                         {{ $department->name }}
                                     </option>
                                 @endforeach
@@ -248,7 +248,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['sections'] as $section)
                                     <option value="{{ $section->id }}"
-                                        {{ old('section', optional($employee->employee->section)->id) == $section->id ? 'selected' : '' }}>
+                                        {{ old('section', optional(optional($employee->employee)->section)->id) == $section->id ? 'selected' : '' }}>
                                         {{ $section->name }}
                                     </option>
                                 @endforeach
@@ -268,7 +268,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['categories'] as $category)
                                     <option value="{{ $category->id }}"
-                                        {{ old('category', optional($employee->employee->category)->id) == $category->id ? 'selected' : '' }}>
+                                        {{ old('category', optional(optional($employee->employee)->category)->id) == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
@@ -288,7 +288,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['jobGrades'] as $jobGrade)
                                     <option value="{{ $jobGrade->id }}"
-                                        {{ old('jobGrade', optional($employee->employee->jobGrade)->id) == $jobGrade->id ? 'selected' : '' }}>
+                                        {{ old('jobGrade', optional(optional($employee->employee)->jobGrade)->id) == $jobGrade->id ? 'selected' : '' }}>
                                         {{ $jobGrade->name }}
                                     </option>
                                 @endforeach
@@ -308,7 +308,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['businessUnits'] as $businessUnit)
                                     <option value="{{ $businessUnit->id }}"
-                                        {{ old('businessUnit', optional($employee->employee->businessUnit)->id) == $businessUnit->id ? 'selected' : '' }}>
+                                        {{ old('businessUnit', optional(optional($employee->employee)->businessUnit)->id) == $businessUnit->id ? 'selected' : '' }}>
                                         {{ $businessUnit->name }}
                                     </option>
                                 @endforeach
@@ -328,7 +328,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($settings['qualifications'] as $qualification)
                                     <option value="{{ $qualification->id }}"
-                                        {{ old('qualification', optional($employee->employee->qualification)->id) == $qualification->id ? 'selected' : '' }}>
+                                        {{ old('qualification', optional(optional($employee->employee)->qualification)->id) == $qualification->id ? 'selected' : '' }}>
                                         {{ $qualification->name }}
                                     </option>
                                 @endforeach
