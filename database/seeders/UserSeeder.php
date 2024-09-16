@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -36,6 +37,14 @@ class UserSeeder extends Seeder
             ]
         );
 
+        // Get the first company (you might want to refine this query depending on your needs)
+        $company = Company::first();
+
+        if ($company) {
+            // Attach the user to the company
+            $superadmin->companies()->attach($company->id);
+        }
+
         Bouncer::assign('superadmin')->to($superadmin);
 
         // Create or update the HR admin user
@@ -56,6 +65,14 @@ class UserSeeder extends Seeder
                 'user_id' => $hradmin->id
             ]
         );
+
+        // Get the first company (you might want to refine this query depending on your needs)
+        $company = Company::first();
+
+        if ($company) {
+            // Attach the user to the company
+            $hradmin->companies()->attach($company->id);
+        }
 
         Bouncer::assign('hradmin')->to($hradmin);
 
@@ -78,6 +95,14 @@ class UserSeeder extends Seeder
             ]
         );
 
+        // Get the first company (you might want to refine this query depending on your needs)
+        $company = Company::first();
+
+        if ($company) {
+            // Attach the user to the company
+            $supervisor->companies()->attach($company->id);
+        }
+
         Bouncer::assign('supervisor')->to($supervisor);
 
         // Create or update the employee user
@@ -93,11 +118,20 @@ class UserSeeder extends Seeder
             ]
         );
 
-        $employee = Employee::updateOrCreate(
+        // Get the first company (you might want to refine this query depending on your needs)
+        $company = Company::first();
+
+        if ($company) {
+            // Attach the user to the company
+            $employee->companies()->attach($company->id);
+        }
+
+        $employeedetails = Employee::updateOrCreate(
             [
                 'user_id' => $employee->id
             ]
         );
+        
 
         Bouncer::assign('employee')->to($employee);
     }
