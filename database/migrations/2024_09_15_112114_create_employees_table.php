@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('security_group_id')->constrained('security_groups')->cascadeOnDelete();
+            $table->foreignId('security_group_id')->nullable()->constrained('security_groups')->cascadeOnDelete();
             $table->foreignId('race_id')->nullable()->constrained('races')->cascadeOnDelete();
             $table->foreignId('religion_id')->nullable()->constrained('religions')->cascadeOnDelete();
             $table->foreignId('nationality_id')->nullable()->constrained('nationalities')->cascadeOnDelete();
@@ -26,6 +26,23 @@ return new class extends Migration
             $table->foreignId('job_grade_id')->nullable()->constrained('job_grades')->cascadeOnDelete();
             $table->foreignId('business_unit_id')->nullable()->constrained('business_units')->cascadeOnDelete();
             $table->foreignId('qualification_id')->nullable()->constrained('qualifications')->cascadeOnDelete();
+            $table->string('employee_id')->unique()->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->string('short_name')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('marital_status')->nullable();
+            $table->string('home_no')->nullable();
+            $table->string('mobile_no')->nullable();
+            $table->date('group_join_date')->nullable();
+            $table->date('join_date')->nullable();
+            $table->date('confirm_date')->nullable();
+            $table->date('increment_date')->nullable();
+            $table->date('resign_date')->nullable();
+            $table->date('retire_date')->nullable();
+            $table->date('probation_end_date')->nullable();
+            $table->string('work_type')->nullable();
+            $table->string('designation')->nullable();
             $table->timestamps();
         });
     }

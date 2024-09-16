@@ -46,6 +46,23 @@ class Employee extends Model
         'job_grade_id',
         'business_unit_id',
         'qualification_id',
+        'employee_id',
+        'is_active',
+        'short_name',
+        'dob',
+        'gender',
+        'marital_status',
+        'home_no',
+        'mobile_no',
+        'group_join_date',
+        'join_date',
+        'confirm_date',
+        'increment_date',
+        'resign_date',
+        'retire_date',
+        'probation_end_date',
+        'work_type',
+        'designation',
     ];
 
     public function user()
