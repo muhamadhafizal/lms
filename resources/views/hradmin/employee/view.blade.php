@@ -104,6 +104,120 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-6 col-md-3">
+                        <label for="form-label">Employee No</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->employee_id ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Short Name</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->short_name ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Date Of Birth</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->dob ? date('d-m-Y', strtotime($employee->employee->dob)) : '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Gender</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->gender ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Marital Status</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->marital_status ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Home No</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->home_no ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Mobile No</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->mobile_no ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Group Join Date</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">
+                            {{ $employee->employee->group_join_date ? date('d-m-Y', strtotime($employee->employee->group_join_date)) : '-' }}
+                        </b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Join Date</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->join_date ? date('d-m-Y', strtotime($employee->employee->join_date)) : '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Confirm Date</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->confirm_date ? date('d-m-Y', strtotime($employee->employee->confirm_date )) : '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Increment Date</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->increment_date ? date('d-m-Y', strtotime($employee->employee->increment_date)) : '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Resign Date</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->resign_date ? date('d-m-Y', strtotime($employee->employee->resign_date )) : '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Retire Date</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->retire_date ? date('d-m-Y', strtotime($employee->employee->retire_date)) : '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Probation End Date</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->probation_end_date ? date('d-m-Y', strtotime($employee->employee->probation_end_date )) : '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Work Type</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->work_type ?? '-' }}</b>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Designation</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->designation ?? '-' }}</b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
                         <label for="form-label">Language</label>
                     </div>
                     <div class="col-6 col-md-3">

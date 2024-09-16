@@ -127,7 +127,244 @@
                             @enderror
                         </div>
                     </div>
-                    <hr>  
+                    <hr>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Employee No</label>
+                            <input name="employee_id" type="text"
+                                class="form-control @error('employee_id') is-invalid @enderror"
+                                value="{{ old('employee_id', $employee->employee->employee_id) }}">
+
+                            @error('employee_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Short Name</label>
+                            <input name="short_name" type="text"
+                                class="form-control @error('short_name') is-invalid @enderror"
+                                value="{{ old('short_name', $employee->employee->short_name) }}">
+
+                            @error('short_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Date Of Birth</label>
+                            <input name="dob" type="date"
+                                class="form-control @error('dob') is-invalid @enderror"
+                                value="{{ old('dob', $employee->employee->dob) }}">
+
+                            @error('dob')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Gender</label>
+                            <select name="gender" class="form-select @error('gender') is-invalid @enderror">
+                                <option value="" selected disabled>Please Select</option>
+                                <option value="Male" {{ old('gender', $employee->employee->gender) == 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ old('gender', $employee->employee->gender) == 'Female' ? 'selected' : '' }}>Female</option>
+                            </select>
+
+                            @error('gender')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Marital Status</label>
+                            <select name="marital_status" class="form-select @error('marital_status') is-invalid @enderror">
+                                <option value="" selected disabled>Please Select</option>
+                                <option value="Single" {{ old('marital_status', $employee->employee->marital_status) == 'Single' ? 'selected' : '' }}>Single</option>
+                                <option value="Married" {{ old('marital_status', $employee->employee->marital_status) == 'Married' ? 'selected' : '' }}>Married</option>
+                                <option value="Divorced" {{ old('marital_status', $employee->employee->marital_status) == 'Divorced' ? 'selected' : '' }}>Divorced</option>
+                                <option value="Widow" {{ old('marital_status', $employee->employee->marital_status) == 'Widow' ? 'selected' : '' }}>Widow</option>
+                                <option value="Widower" {{ old('marital_status', $employee->employee->marital_status) == 'Widower' ? 'selected' : '' }}>Widower</option>
+                            </select>
+
+                            @error('marital_status')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Home No</label>
+                            <input name="home_no" type="text"
+                                class="form-control @error('home_no') is-invalid @enderror"
+                                value="{{ old('home_no', $employee->employee->home_no) }}">
+
+                            @error('home_no')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Mobile No</label>
+                            <input name="mobile_no" type="text"
+                                class="form-control @error('mobile_no') is-invalid @enderror"
+                                value="{{ old('mobile_no', $employee->employee->mobile_no) }}">
+
+                            @error('mobile_no')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Group Join Date</label>
+                            <input name="group_join_date" type="date"
+                                class="form-control @error('group_join_date') is-invalid @enderror"
+                                value="{{ old('group_join_date', $employee->employee->group_join_date) }}">
+
+                            @error('group_join_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Join Date</label>
+                            <input name="join_date" type="date"
+                                class="form-control @error('join_date') is-invalid @enderror"
+                                value="{{ old('join_date', $employee->employee->join_date) }}">
+
+                            @error('join_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Date</label>
+                            <input name="confirm_date" type="date"
+                                class="form-control @error('confirm_date') is-invalid @enderror"
+                                value="{{ old('confirm_date', $employee->employee->confirm_date) }}">
+
+                            @error('confirm_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Increment Date</label>
+                            <input name="increment_date" type="date"
+                                class="form-control @error('increment_date') is-invalid @enderror"
+                                value="{{ old('increment_date', $employee->employee->increment_date) }}">
+
+                            @error('increment_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Resign Date</label>
+                            <input name="resign_date" type="date"
+                                class="form-control @error('resign_date') is-invalid @enderror"
+                                value="{{ old('resign_date', $employee->employee->resign_date) }}">
+
+                            @error('resign_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Retire Date</label>
+                            <input name="retire_date" type="date"
+                                class="form-control @error('retire_date') is-invalid @enderror"
+                                value="{{ old('retire_date', $employee->employee->retire_date) }}">
+
+                            @error('retire_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Probation End Date</label>
+                            <input name="probation_end_date" type="date"
+                                class="form-control @error('probation_end_date') is-invalid @enderror"
+                                value="{{ old('probation_end_date', $employee->employee->probation_end_date) }}">
+
+                            @error('probation_end_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Work Type</label>
+                            <select name="work_type" class="form-select @error('work_type') is-invalid @enderror">
+                                <option value="" selected disabled>Please Select</option>
+                                <option value="Management" {{ old('work_type', $employee->employee->work_type) == 'Management' ? 'selected' : '' }}>Management</option>
+                                <option value="FullTime" {{ old('work_type', $employee->employee->work_type) == 'FullTime' ? 'selected' : '' }}>FullTime</option>
+                                <option value="PartTime" {{ old('work_type', $employee->employee->work_type) == 'PartTime' ? 'selected' : '' }}>PartTime</option>
+                                <option value="Contract" {{ old('work_type', $employee->employee->work_type) == 'Contract' ? 'selected' : '' }}>Contract</option>
+                                <option value="Internship" {{ old('work_type', $employee->employee->work_type) == 'Internship' ? 'selected' : '' }}>Internship</option>
+                                <option value="Others" {{ old('work_type', $employee->employee->work_type) == 'Others' ? 'selected' : '' }}>Others</option>
+                            </select>
+
+                            @error('work_type')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Designation</label>
+                            <input name="designation" type="text"
+                                class="form-control @error('designation') is-invalid @enderror"
+                                value="{{ old('designation', $employee->employee->designation) }}">
+
+                            @error('designation')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="mb-4">
                             <label class="form-label">Security Group</label>
