@@ -14,6 +14,7 @@ use App\Models\Qualification;
 use App\Models\Race;
 use App\Models\Religion;
 use App\Models\Section;
+use App\Models\SecurityGroup;
 use App\Models\WorkLocation;
 
 class SettingService
@@ -24,6 +25,7 @@ class SettingService
      */
     public static function getSettings()
     {
+        $securityGroups = SecurityGroup::where('active', 1)->get();
         $races = Race::where('active', 1)->get();
         $religions = Religion::where('active', 1)->get();
         $nationalities = Nationality::where('active', 1)->get();
@@ -37,6 +39,7 @@ class SettingService
         $qualifications = Qualification::where('active', 1)->get();
 
         $settingsArray = [
+            'securityGroups' => $securityGroups,
             'races' => $races,
             'religions' => $religions,
             'nationalities' => $nationalities,

@@ -34,6 +34,7 @@ class Employee extends Model
 
     protected $fillable = [
         'user_id',
+        'security_group_id',
         'race_id',
         'religion_id',
         'nationality_id',
@@ -50,6 +51,11 @@ class Employee extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function securityGroup()
+    {
+        return $this->belongsTo(SecurityGroup::class);
     }
 
     public function supervisors()

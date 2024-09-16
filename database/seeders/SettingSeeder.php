@@ -14,6 +14,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Race;
 use App\Models\Religion;
 use App\Models\Section;
+use App\Models\SecurityGroup;
 use App\Models\WorkLocation;
 
 class SettingSeeder extends Seeder
@@ -23,6 +24,19 @@ class SettingSeeder extends Seeder
      */
     public function run(): void
     {
+        $securityGroups = [
+            ['name' => 'Director'],
+            ['name' => 'Manager'],
+            ['name' => 'Executive'],
+            ['name' => 'Non-Executive'],
+        ];
+
+        foreach($securityGroups as $securityGroup) {
+            SecurityGroup::updateOrCreate(
+                ['name' => $securityGroup['name']]
+            );
+        }
+
         $races = [
             ['name' => 'Malay'],
             ['name' => 'Chinese'],

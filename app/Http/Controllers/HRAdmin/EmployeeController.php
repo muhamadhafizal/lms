@@ -112,6 +112,7 @@ class EmployeeController extends Controller
             //store employee
             Employee::create([
                 'user_id' => $user->id,
+                'security_group_id' => $request->securityGroup,
                 'race_id' => $request->race,
                 'religion_id' => $request->religion,
                 'nationality_id' => $request->nationality,
@@ -194,6 +195,7 @@ class EmployeeController extends Controller
         ]);
 
         $employee->employee->update([
+            'security_group_id' => $request->securityGroup,
             'race_id' => $request->race,
             'religion_id' => $request->religion,
             'nationality_id' => $request->nationality,

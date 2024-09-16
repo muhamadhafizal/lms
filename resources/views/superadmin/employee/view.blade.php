@@ -76,6 +76,31 @@
                             @endif
                         </b>
                     </div>
+                    @if($employee->getRoles()[0] == 'hradmin')
+                        <div class="col-6 col-md-3">
+                            <label for="form-label">User Security Group</label>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <b class="text-main">
+                            @if($employee->securityGroups->isNotEmpty())
+                                {{-- Loop through the security groups and display their names --}}
+                                    @foreach($employee->securityGroups as $securityGroup)
+                                        {{ $securityGroup->name }}<br>
+                                    @endforeach
+                            @else
+                                No security groups assigned.
+                            @endif
+                            </b>
+                        </div>
+                    @endif
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <label for="form-label">Security Group</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">{{ $employee->employee->securityGroup->name ?? '-' }}</b>
+                    </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-6 col-md-3">

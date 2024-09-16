@@ -106,6 +106,26 @@
                     <hr>
                     <div class="col-md-6">
                         <div class="mb-4">
+                            <label class="form-label">Security Group</label>
+                            <select name="securityGroup" class="form-select @error('securityGroup') is-invalid @enderror">
+                                <option value="">Please Select</option>
+                                @foreach ($settings['securityGroups'] as $securityGroup)
+                                    <option value="{{ $securityGroup->id }}"
+                                        {{ old('securityGroup') == $securityGroup->id ? 'selected' : '' }}>
+                                        {{ $securityGroup->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('securityGroup')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
                             <label class="form-label">Language</label>
                             <select name="user_language" class="form-select @error('user_language') is-invalid @enderror">
                                 <option value="" selected disabled>Please Select</option>

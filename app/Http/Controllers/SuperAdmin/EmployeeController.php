@@ -89,6 +89,7 @@ class EmployeeController extends Controller
             //store employee
             Employee::create([
                 'user_id' => $user->id,
+                'security_group_id' => $request->securityGroup,
                 'race_id' => $request->race,
                 'religion_id' => $request->religion,
                 'nationality_id' => $request->nationality,
@@ -199,6 +200,7 @@ class EmployeeController extends Controller
         ]);
 
         $employee->employee->update([
+            'security_group_id' => $request->securityGroup,
             'race_id' => $request->race,
             'religion_id' => $request->religion,
             'nationality_id' => $request->nationality,
@@ -211,6 +213,13 @@ class EmployeeController extends Controller
             'business_unit_id' => $request->businessUnit,
             'qualification_id' => $request->qualification,
         ]);
+
+        // Attach security groups
+        if ($request->has('userSecurityGroups')) {
+            $employee->securityGroups()->sync($request->input('userSecurityGroups'));
+        } else {
+            $employee->securityGroups()->detach(); // Remove all security groups if none are selected
+        }
 
         //Update supervisor
         if($request->supervisor_one){

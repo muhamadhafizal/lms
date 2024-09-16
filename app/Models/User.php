@@ -80,6 +80,11 @@ class User extends Authenticatable
         return $this->hasOne(Employee::class);
     }
 
+    public function securityGroups()
+    {
+        return $this->belongsToMany(SecurityGroup::class)->withTimestamps();
+    }
+
     public function scopeRole($query, $roles)
     {
         $query = $query->whereHas('roles', function ($q) use ($roles) {
