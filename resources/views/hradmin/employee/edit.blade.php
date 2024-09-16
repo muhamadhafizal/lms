@@ -62,6 +62,30 @@
                             @enderror
                         </div>
                     </div>
+                    @if($employee->getRoles()[0] == 'hradmin')
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label">User Security Group</label>
+                                @foreach ($settings['securityGroups'] as $securityGroup)
+                                    <div class="form-check">
+                                        <input 
+                                            class="form-check-input" 
+                                            type="checkbox" 
+                                            id="securityGroup{{ $securityGroup->id }}" 
+                                            name="userSecurityGroups[]" 
+                                            value="{{ $securityGroup->id }}"
+                                            
+                                            {{-- Check if this security group is selected in the old input or already belongs to the user --}}
+                                            {{ in_array($securityGroup->id, old('userSecurityGroups', $employee->securityGroups->pluck('id')->toArray())) ? 'checked' : '' }}>
+                                        
+                                        <label class="form-check-label" for="securityGroup{{ $securityGroup->id }}">
+                                            {{ $securityGroup->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                     <hr>
                     <div class="col-md-6">
                         <div class="mb-4">

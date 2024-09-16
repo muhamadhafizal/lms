@@ -209,6 +209,13 @@ class EmployeeController extends Controller
             'qualification_id' => $request->qualification,
         ]);
 
+        // Attach security groups
+        if ($request->has('userSecurityGroups')) {
+            $employee->securityGroups()->sync($request->input('userSecurityGroups'));
+        } else {
+            $employee->securityGroups()->detach(); // Remove all security groups if none are selected
+        }
+
         //Update supervisor
         if($request->supervisor_one){
              // Handle Supervisor 1
