@@ -48,7 +48,37 @@
         }
     });
 
+    document.getElementById('company').addEventListener('change', function() {
+        var companyId = this.value;
+        var supervisorOneSelect = document.querySelector('[name="supervisor_one"]');
+        var supervisorTwoSelect = document.querySelector('[name="supervisor_two"]');
 
+        if (companyId) {
+            fetch(`/get-users/${companyId}`)
+                .then(response => response.json())
+                .then(data => {
+                    supervisorOneSelect.innerHTML = '<option value="">Please Select</option>';
+                    supervisorTwoSelect.innerHTML = '<option value="">Please Select</option>';
+
+                    data.forEach(function(user) {
+                        var optionOne = document.createElement('option');
+                        var optionTwo = document.createElement('option');
+                        
+                        optionOne.value = user.id;
+                        optionOne.text = user.user_name;
+                        optionTwo.value = user.id;
+                        optionTwo.text = user.user_name;
+
+                        supervisorOneSelect.appendChild(optionOne);
+                        supervisorTwoSelect.appendChild(optionTwo);
+                    });
+                })
+                .catch(error => console.error('Error fetching users:', error));
+        } else {
+            supervisorOneSelect.innerHTML = '<option value="">Please Select</option>';
+            supervisorTwoSelect.innerHTML = '<option value="">Please Select</option>';
+        }
+    });
 </script>
 
 @endsection

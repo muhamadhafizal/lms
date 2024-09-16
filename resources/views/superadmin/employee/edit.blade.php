@@ -102,6 +102,46 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Supervisor 1</label>
+                            <select name="supervisor_one" class="form-select @error('supervisor_one') is-invalid @enderror">
+                                <option value="">Please Select</option>
+                                @foreach ($supervisors as $supervisor)
+                                    <option value="{{ $supervisor->id }}"
+                                        {{ old('supervisor_one', optional($employee->employee->supervisors->firstWhere('level', 1))->supervisor_id) == $supervisor->id ? 'selected' : '' }}>
+                                        {{ $supervisor->user_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('supervisor_one')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Supervisor 2</label>
+                            <select name="supervisor_two" class="form-select @error('supervisor_two') is-invalid @enderror">
+                                <option value="">Please Select</option>
+                                @foreach ($supervisors as $supervisor)
+                                    <option value="{{ $supervisor->id }}"
+                                        {{ old('supervisor_two', optional($employee->employee->supervisors->firstWhere('level', 2))->supervisor_id) == $supervisor->id ? 'selected' : '' }}>
+                                        {{ $supervisor->user_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('supervisor_two')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                     <hr>
                     <div class="col-md-6">
                         <div class="mb-4">

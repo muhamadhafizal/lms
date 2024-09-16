@@ -15,6 +15,7 @@ use App\Mail\SendStaffWelcomeEmail;
 use App\Http\Services\GeneratePasswordService;
 use App\Http\Services\SettingService;
 use App\Models\Employee;
+use App\Models\EmployeeSupervisor;
 use App\Models\User;
 use Database\Seeders\SettingSeeder;
 use Illuminate\Support\Facades\DB;
@@ -101,6 +102,23 @@ class EmployeeController extends Controller
                 'qualification_id' => $request->qualification,
             ]);
 
+            // Define an array of supervisors
+            $supervisors = [
+                ['supervisor_id' => $request->supervisor_one, 'level' => 1],
+                ['supervisor_id' => $request->supervisor_two, 'level' => 2],
+            ];
+
+            // Loop through supervisors and create records
+            foreach ($supervisors as $supervisor) {
+                if ($supervisor['supervisor_id']) {
+                    EmployeeSupervisor::create([
+                        'employee_id' => $user->id,
+                        'supervisor_id' => $supervisor['supervisor_id'],
+                        'level' => $supervisor['level'],
+                    ]);
+                }
+            }
+
             //store role
             $user->assign($request->role);
 
@@ -116,6 +134,7 @@ class EmployeeController extends Controller
     {
         $employee = $employee->load([
             'employee',
+            'employee.supervisors.supervisor.user',
             'employee.race',
             'employee.religion',
             'employee.nationality',
@@ -161,7 +180,14 @@ class EmployeeController extends Controller
             'employee.qualification',
         ]);
 
-        return view('superadmin.employee.edit', compact('employee','clients', 'companies', 'roles','settings'));
+        $supervisors = User::role(['supervisor'])
+            ->whereHas('companies', function ($q) use ($employee) {
+                $q->where('company_id', $employee->companies->first()->id);
+            })
+            ->latest()
+            ->get();
+
+        return view('superadmin.employee.edit', compact('employee','clients', 'companies', 'roles','settings','supervisors'));
     }
 
     public function update(UpdateRequest $request, User $employee)
@@ -185,6 +211,55 @@ class EmployeeController extends Controller
             'business_unit_id' => $request->businessUnit,
             'qualification_id' => $request->qualification,
         ]);
+
+        //Update supervisor
+        if($request->supervisor_one){
+            // Handle Supervisor 1
+            EmployeeSupervisor::updateOrCreate(
+                ['employee_id' => $employee->id, 'level' => 1],
+                ['supervisor_id' => $request->supervisor_one]
+            );
+
+            // Handle Supervisor 2 (if provided)
+            if ($request->supervisor_two) {
+                EmployeeSupervisor::updateOrCreate(
+                    ['employee_id' => $employee->id, 'level' => 2],
+                    ['supervisor_id' => $request->supervisor_two]
+                );
+            }
+        }
+        
+        //$supervisor_one = EmployeeSupervisor::where('employee_id', $employee->id)->where('level', 1)->first();
+        // if($supervisor_one){
+        //     //update supervisor
+        //     $supervisor_one->update([
+        //         'supervisor_id' => $request->supervisor_one,
+        //     ]);
+        // } else {
+        //     //create supervisor
+        //     EmployeeSupervisor::create([
+        //         'employee_id' => $employee->id,
+        //         'supervisor_id' => $request->supervisor_one,
+        //         'level' => 1,
+        //     ]);
+        // }
+
+        // $supervisor_two = EmployeeSupervisor::where('employee_id', $employee->id)->where('level', 2)->first();
+        // if($request->supervisor_two){
+        //     if($supervisor_two){
+        //         //update supervisor
+        //         $supervisor_two->update([
+        //             'supervisor_id' => $request->supervisor_two,
+        //         ]);
+        //     } else {
+        //         //create supervisor
+        //         EmployeeSupervisor::create([
+        //             'employee_id' => $employee->id,
+        //             'supervisor_id' => $request->supervisor_two,
+        //             'level' => 2,
+        //         ]);
+        //     }
+        // }
 
         $employee->roles()->sync($request->role);
 

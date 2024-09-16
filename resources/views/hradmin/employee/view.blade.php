@@ -63,6 +63,22 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-6 col-md-3">
+                        <label for="form-label">Supervisor</label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <b class="text-main">
+                            @if($employee->employee->supervisors->isNotEmpty())
+                                @foreach($employee->employee->supervisors as $supervisor)
+                                   Supervisor {{ $supervisor->level }} : {{ $supervisor->supervisor->user->user_name }}<br>
+                                @endforeach
+                            @else
+                                No Supervisors Assigned.
+                            @endif
+                        </b>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
                         <label for="form-label">Language</label>
                     </div>
                     <div class="col-6 col-md-3">

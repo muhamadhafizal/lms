@@ -25,6 +25,8 @@ class UpdateRequest extends FormRequest
             'user_name' => "required|unique:users,user_name,{$this->employee->id}",
             'user_email' => "required|email|unique:users,user_email,{$this->employee->id}",
             'role' => 'required|exists:roles,id',
+            'supervisor_one' => 'nullable|exists:users,id',
+            'supervisor_two' => 'nullable|exists:users,id|different:supervisor_one',
         ];
     }
 }

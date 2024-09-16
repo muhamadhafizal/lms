@@ -9,6 +9,7 @@ use App\Http\Services\GeneratePasswordService;
 use App\Http\Services\SettingService;
 use App\Mail\SendStaffWelcomeEmail;
 use App\Models\Employee;
+use App\Models\EmployeeSupervisor;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
@@ -36,6 +37,7 @@ class EmployeeController extends Controller
     {
         $employee = $employee->load([
                 'employee',
+                'employee.supervisors.supervisor.user',
                 'employee.race',
                 'employee.religion',
                 'employee.nationality',
@@ -59,7 +61,14 @@ class EmployeeController extends Controller
         $roles = Role::where('name', '!=', 'superadmin')
             ->get();
 
-        return view('hradmin.employee.add', compact('roles','settings'));
+        $supervisors = User::role(['supervisor'])
+            ->whereHas('companies', function ($q) {
+                $q->whereIn('company_id', auth()->user()->companies->pluck('id'));
+            })
+            ->latest()
+            ->get();
+            
+        return view('hradmin.employee.add', compact('roles','settings','supervisors'));
     }
 
     public function store(StoreRequest $request)
@@ -116,6 +125,23 @@ class EmployeeController extends Controller
                 'qualification_id' => $request->qualification,
             ]);
 
+            // Define an array of supervisors
+            $supervisors = [
+                ['supervisor_id' => $request->supervisor_one, 'level' => 1],
+                ['supervisor_id' => $request->supervisor_two, 'level' => 2],
+            ];
+
+            // Loop through supervisors and create records
+            foreach ($supervisors as $supervisor) {
+                if ($supervisor['supervisor_id']) {
+                    EmployeeSupervisor::create([
+                        'employee_id' => $user->id,
+                        'supervisor_id' => $supervisor['supervisor_id'],
+                        'level' => $supervisor['level'],
+                    ]);
+                }
+            }
+
             //store role
             $user->assign($request->role);
 
@@ -148,8 +174,15 @@ class EmployeeController extends Controller
                 'employee.businessUnit',
                 'employee.qualification',
             ]);
+        
+        $supervisors = User::role(['supervisor'])
+            ->whereHas('companies', function ($q) {
+                $q->whereIn('company_id', auth()->user()->companies->pluck('id'));
+            })
+            ->latest()
+            ->get();
 
-        return view('hradmin.employee.edit', compact('employee','roles','settings'));
+        return view('hradmin.employee.edit', compact('employee','roles','settings','supervisors'));
     }
 
     public function update(UpdateRequest $request, User $employee)
@@ -174,6 +207,23 @@ class EmployeeController extends Controller
             'qualification_id' => $request->qualification,
         ]);
 
+        //Update supervisor
+        if($request->supervisor_one){
+             // Handle Supervisor 1
+            EmployeeSupervisor::updateOrCreate(
+                ['employee_id' => $employee->id, 'level' => 1],
+                ['supervisor_id' => $request->supervisor_one]
+            );
+
+            // Handle Supervisor 2 (if provided)
+            if ($request->supervisor_two) {
+                EmployeeSupervisor::updateOrCreate(
+                    ['employee_id' => $employee->id, 'level' => 2],
+                    ['supervisor_id' => $request->supervisor_two]
+                );
+            }
+        }
+       
         $employee->roles()->sync($request->role);
 
         return redirect()->route('hradmin.employee.view', $employee)->with('successMessage', 'Successfully update user');

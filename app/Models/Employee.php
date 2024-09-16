@@ -52,6 +52,11 @@ class Employee extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function supervisors()
+    {
+        return $this->hasMany(EmployeeSupervisor::class, 'employee_id');
+    }
+
     public function race()
     {
         return $this->belongsTo(Race::class);

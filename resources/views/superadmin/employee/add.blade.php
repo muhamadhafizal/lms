@@ -70,8 +70,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($clients as $client)
                                     <option value="{{ $client->id }}"
-                                        data-companies="{{ json_encode($client->companies) }}"
-                                        {{ old('client', Request::get('client')) == $client->id ? 'selected' : '' }}>
+                                        data-companies="{{ json_encode($client->companies) }}">
                                         {{ $client->name }}
                                     </option>
                                 @endforeach
@@ -90,13 +89,41 @@
                             <select id="company" class="form-select @error('company') is-invalid @enderror" name="company" disabled>
                                 <option value="">Please Select</option>
                                 @foreach ($companies as $company)
-                                    <option value="{{ $company->id }}"
-                                        {{ old('company', Request::get('company')) == $company->id ? 'selected' : '' }}>
+                                    <option value="{{ $company->id }}">
                                         {{ $company->name }}
                                     </option>
                                 @endforeach
                             </select>
                             @error('company')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Supervisor 1</label>
+                            <select name="supervisor_one" class="form-select @error('supervisor_one') is-invalid @enderror">
+                                <option value="">Please Select</option>
+                            </select>
+
+                            @error('supervisor_one')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Supervisor 2</label>
+                            <select name="supervisor_two" class="form-select @error('supervisor_two') is-invalid @enderror">
+                                <option value="">Please Select</option>
+                            </select>
+
+                            @error('supervisor_two')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

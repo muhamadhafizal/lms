@@ -27,6 +27,8 @@ class StoreRequest extends FormRequest
             'client' => 'required|exists:clients,id',
             'company' => 'required|exists:companies,id',
             'role' => 'required|exists:roles,id',
+            'supervisor_one' => 'nullable|exists:users,id',
+            'supervisor_two' => 'nullable|exists:users,id|different:supervisor_one',
         ];
     }
 }

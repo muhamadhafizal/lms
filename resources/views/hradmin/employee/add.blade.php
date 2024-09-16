@@ -65,6 +65,47 @@
                     <hr>
                     <div class="col-md-6">
                         <div class="mb-4">
+                            <label class="form-label">Supervisor 1</label>
+                            <select name="supervisor_one" class="form-select @error('supervisor_one') is-invalid @enderror">
+                                <option value="">Please Select</option>
+                                @foreach ($supervisors as $supervisor)
+                                    <option value="{{ $supervisor->id }}"
+                                        {{ old('supervisor_one') == $supervisor->id ? 'selected' : '' }}>
+                                        {{ $supervisor->user_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('supervisor_one')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <label class="form-label">Supervisor 2</label>
+                            <select name="supervisor_two" class="form-select @error('supervisor_two') is-invalid @enderror">
+                                <option value="">Please Select</option>
+                                @foreach ($supervisors as $supervisor)
+                                    <option value="{{ $supervisor->id }}"
+                                        {{ old('supervisor_two') == $supervisor->id ? 'selected' : '' }}>
+                                        {{ $supervisor->user_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('supervisor_two')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-md-6">
+                        <div class="mb-4">
                             <label class="form-label">Language</label>
                             <select name="user_language" class="form-select @error('user_language') is-invalid @enderror">
                                 <option value="" selected disabled>Please Select</option>

@@ -25,6 +25,8 @@ class StoreRequest extends FormRequest
             'user_name' => 'required|unique:users,user_name',
             'user_email' => 'required|email|unique:users,user_email',
             'role' => 'required|exists:roles,id',
+            'supervisor_one' => 'nullable|exists:users,id',
+            'supervisor_two' => 'nullable|exists:users,id|different:supervisor_one',
         ];
     }
 }
