@@ -5,6 +5,7 @@ use App\Http\Controllers\SuperAdmin\ClientController;
 use App\Http\Controllers\Superadmin\CompanyController;
 use App\Http\Controllers\Superadmin\UserController;
 use App\Http\Controllers\General\ActivityLogController;
+use App\Http\Controllers\General\BatchSetupController;
 use App\Http\Controllers\SuperAdmin\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,19 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
             Route::name('edit')->get('/edit/{employee}', 'edit');
             Route::name('update')->post('/update/{employee}', 'update');
             Route::name('resend')->post('/resend/{employee}', 'resend');
+        });
+    });
+
+    Route::name('setups.')->prefix('setups')->group(function (){
+        Route::name('batch.')->prefix('batch')->group(function (){
+            Route::controller(BatchSetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+                Route::name('add')->get('/add', 'add');
+                Route::name('store')->post('/store', 'store');
+                Route::name('view')->get('/view/{batch}', 'view');
+                Route::name('edit')->get('/edit/{batch}', 'edit');
+                Route::name('update')->post('/update/{batch}', 'update');
+            });
         });
     });
 

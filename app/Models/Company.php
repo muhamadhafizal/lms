@@ -77,6 +77,11 @@ class Company extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
+    public function batchSetups()
+    {
+        return $this->hasMany(BatchSetup::class);
+    }
+
     public function scopeSearch(Builder $query): void
     {
         

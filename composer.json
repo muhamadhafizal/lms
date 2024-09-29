@@ -8,6 +8,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "pyaesone17/active-state": "^1.1.1",
         "silber/bouncer": "^1.0",
         "spatie/laravel-activitylog": "^4.8"
     },
