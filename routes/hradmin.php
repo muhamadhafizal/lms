@@ -3,6 +3,7 @@
 use App\Http\Controllers\HRadmin\DashboardController;
 use App\Http\Controllers\General\ActivityLogController;
 use App\Http\Controllers\General\BatchSetupController;
+use App\Http\Controllers\General\EmployeeFeedbackSetupController;
 use App\Http\Controllers\HRAdmin\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,19 @@ Route::prefix('hradmin')->name('hradmin.')->middleware(['auth','hradmin'])->grou
                 Route::name('view')->get('/view/{batch}', 'view');
                 Route::name('edit')->get('/edit/{batch}', 'edit');
                 Route::name('update')->post('/update/{batch}', 'update');
+            });
+        });
+
+        Route::name('employee-feedback.')->prefix('employee-feedback')->group(function (){
+            Route::controller(EmployeeFeedbackSetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+                Route::name('add')->get('/add', 'add');
+                Route::name('store')->post('/store', 'store');
+                Route::name('view')->get('/view/{employeeFeedback}', 'view');
+                Route::name('edit')->get('/edit/{employeeFeedback}', 'edit');
+                Route::name('update')->post('/update/{employeeFeedback}', 'update');
+                Route::name('store-question')->post('/store-question', 'storeQuestion');
+                Route::name('update-question')->post('/update-question/{employeeFeedbackQuestion}', 'updateQuestion');
             });
         });
     });

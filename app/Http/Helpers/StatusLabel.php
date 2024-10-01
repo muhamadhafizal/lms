@@ -6,9 +6,9 @@ if (! function_exists('getIsActiveStatus')) {
         $badge = '';
 
         if ($is_active) {
-            $badge = '<span class="badge alert alert-success">Active</span>';
+            $badge = '<span class="badge alert alert-success mt-2">Active</span>';
         } else {
-            $badge = '<span class="badge alert alert-danger">Inactive</span>';
+            $badge = '<span class="badge alert alert-danger mt-2">Inactive</span>';
         }
 
         return $badge;

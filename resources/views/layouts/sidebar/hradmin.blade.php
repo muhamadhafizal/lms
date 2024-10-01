@@ -43,8 +43,8 @@
                     KBA
                 </a>
             </li>
-            <li class="{{ active_check('hradmin/setups/employee', true) }}">
-                <a class="load-spinner" href="">
+            <li class="{{ active_check('hradmin/setups/employee-feedback', true) }}">
+                <a class="load-spinner" href="{{ route('hradmin.setups.employee-feedback.index') }}">
                     Employee Feedback
                 </a>
             </li>

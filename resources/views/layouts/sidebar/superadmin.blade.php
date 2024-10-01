@@ -75,8 +75,8 @@
                     KBA
                 </a>
             </li>
-            <li class="{{ active_check('superadmin/setups/employee', true) }}">
-                <a class="load-spinner" href="">
+            <li class="{{ active_check('superadmin/setups/employee-feedback', true) }}">
+                <a class="load-spinner" href="{{ route('superadmin.setups.employee-feedback.index') }}">
                     Employee Feedback
                 </a>
             </li>
