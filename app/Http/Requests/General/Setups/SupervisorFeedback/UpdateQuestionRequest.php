@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\General\Setups\EmployeeFeedback;
+namespace App\Http\Requests\General\Setups\SupervisorFeedback;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateQuestionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,10 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company' => 'required|exists:companies,id',
-            'code' => [
+            'supervisor_feedback_id' => 'required',
+            'question' => [
                 'required',
-                'unique:employee_feedback_setups,code,NULL,id,company_id,' . $this->company
+                'unique:supervisor_feedback_questions,question,'. $this->supervisorFeedbackQuestion->id . ',id,sfs_id,' . $this->supervisor_feedback_id
             ]
         ];
     }

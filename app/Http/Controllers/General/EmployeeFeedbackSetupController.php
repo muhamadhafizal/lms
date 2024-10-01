@@ -79,6 +79,7 @@ class EmployeeFeedbackSetupController extends Controller
         $employeeFeedback->update([
             'code' => $request->code,
             'description' => $request->description,
+            'is_active' => $request->active,
         ]);
 
         return to_route( auth()->user()->getRoles()[0].'.setups.employee-feedback.view', $employeeFeedback->id)->with('successMessage', 'Successfully update employee feedback setup');

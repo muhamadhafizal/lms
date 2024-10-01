@@ -48,8 +48,8 @@
                     Employee Feedback
                 </a>
             </li>
-            <li class="{{ active_check('hradmin/setups/supervisor', true) }}">
-                <a class="load-spinner" href="">
+            <li class="{{ active_check('hradmin/setups/supervisor-feedback', true) }}">
+                <a class="load-spinner" href="{{ route('hradmin.setups.supervisor-feedback.index') }}">
                     Supervisor Feedback
                 </a>
             </li>

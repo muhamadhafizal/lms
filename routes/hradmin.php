@@ -4,6 +4,7 @@ use App\Http\Controllers\HRadmin\DashboardController;
 use App\Http\Controllers\General\ActivityLogController;
 use App\Http\Controllers\General\BatchSetupController;
 use App\Http\Controllers\General\EmployeeFeedbackSetupController;
+use App\Http\Controllers\General\SupervisorFeedbackSetupController;
 use App\Http\Controllers\HRAdmin\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,19 @@ Route::prefix('hradmin')->name('hradmin.')->middleware(['auth','hradmin'])->grou
                 Route::name('update')->post('/update/{employeeFeedback}', 'update');
                 Route::name('store-question')->post('/store-question', 'storeQuestion');
                 Route::name('update-question')->post('/update-question/{employeeFeedbackQuestion}', 'updateQuestion');
+            });
+        });
+
+        Route::name('supervisor-feedback.')->prefix('supervisor-feedback')->group(function (){
+            Route::controller(SupervisorFeedbackSetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+                Route::name('add')->get('/add', 'add');
+                Route::name('store')->post('/store', 'store');
+                Route::name('view')->get('/view/{supervisorFeedback}', 'view');
+                Route::name('store-question')->post('/store-question', 'storeQuestion');
+                Route::name('update-question')->post('/update-question/{supervisorFeedbackQuestion}', 'updateQuestion');
+                Route::name('edit')->get('/edit/{supervisorFeedback}', 'edit');
+                Route::name('update')->post('/update/{supervisorFeedback}', 'update');
             });
         });
     });

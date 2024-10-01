@@ -4,17 +4,17 @@
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <h5 class="title">Edit Employee Feedback Setup</h5>
-            <li class="breadcrumb-item"><a href="{{ route( auth()->user()->getRoles()[0]. '.setups.employee-feedback.index') }}">Employee Feedback Setups</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Employee Feedback Setup</li>
+            <h5 class="title">New Supervisor Feedback Setup</h5>
+            <li class="breadcrumb-item"><a href="{{ route( auth()->user()->getRoles()[0]. '.setups.supervisor-feedback.index') }}">Supervisor Feedback Setups</a></li>
+            <li class="breadcrumb-item active" aria-current="page">New Supervisor Feedback Setup</li>
         </ol>
     </nav>
     <div class="card card-dashboard">
         <div class="card-body">
-            <form method="post" action="{{ route(auth()->user()->getRoles()[0].'.setups.employee-feedback.update', $employeeFeedback) }}">
+            <form method="post" action="{{ route(auth()->user()->getRoles()[0].'.setups.supervisor-feedback.store') }}">
                 @csrf
                 <div class="row">
-                @if(auth()->user()->getRoles()[0] == 'superadmin')
+                    @if( auth()->user()->getRoles()[0] == 'superadmin' )
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">Client<top class="text-danger">*</top></label>
@@ -22,8 +22,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ($clients as $client)
                                     <option value="{{ $client->id }}"
-                                        data-companies="{{ json_encode($client->companies) }}"
-                                        {{ old('client', auth()->user()->companies->first()->client->id) == $client->id ? 'selected' : '' }}>
+                                        data-companies="{{ json_encode($client->companies) }}">
                                         {{ $client->name }}
                                     </option>
                                 @endforeach
@@ -35,14 +34,14 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">Company<top class="text-danger">*</top></label>
-                            <select id="company" class="form-select @error('company') is-invalid @enderror" name="company">
+                            <select id="company" class="form-select @error('company') is-invalid @enderror" name="company" disabled>
                                 <option value="">Please Select</option>
                                 @foreach ($companies as $company)
-                                    <option value="{{ $company->id }}"
-                                        {{ old('company', auth()->user()->companies->first()->id) == $company->id ? 'selected' : '' }}>
+                                    <option value="{{ $company->id }}">
                                         {{ $company->name }}
                                     </option>
                                 @endforeach
@@ -53,7 +52,7 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
+                    </div> 
                     @else
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -61,8 +60,7 @@
                             <select class="form-select @error('company') is-invalid @enderror" name="company">
                                 <option value="">Please Select</option>
                                 @foreach ( auth()->user()->companies as $company)
-                                    <option value="{{$company->id}}"
-                                        {{ old('company', $employeeFeedback->company->id) == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
+                                    <option value="{{$company->id}}">{{ $company->name }}</option>
                                 @endforeach
                             </select>
                             @error('company')
@@ -72,14 +70,14 @@
                             @enderror
                         </div>
                     </div> 
-                    
                     @endif
+
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">Code<top class="text-danger">*</top></label>
                             <input name="code" type="text"
                                 class="form-control @error('code') is-invalid @enderror"
-                                value="{{ old('code', $employeeFeedback->code) }}">
+                                value="{{ old('code') }}">
 
                             @error('code')
                                 <div class="invalid-feedback">
@@ -94,29 +92,11 @@
                             <label class="form-label">Description</label>
                             <input name="description" type="text"
                                 class="form-control @error('description') is-invalid @enderror"
-                                value="{{ old('description', $employeeFeedback->description) }}">
+                                value="{{ old('description') }}">
 
                             @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Status <top class="text-danger">*</top></label>
-                            <select name="active" class="form-select">
-                                <option value="1" selected>Active</option>
-                                <option value="0"
-                                    {{ old('active', $employeeFeedback->is_active) == '0' ? 'selected' : '' }}>
-                                        Inactive</option>
-                            </select>
-
-                            @error('active')
-                                <div class="invalid-feedback">
-                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>

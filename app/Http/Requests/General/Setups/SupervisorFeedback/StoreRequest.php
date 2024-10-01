@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\General\Setups\EmployeeFeedback;
+namespace App\Http\Requests\General\Setups\SupervisorFeedback;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
             'company' => 'required|exists:companies,id',
             'code' => [
                 'required',
-                'unique:employee_feedback_setups,code,NULL,id,company_id,' . $this->company
+                'unique:supervisor_feedback_setups,code,NULL,id,company_id,' . $this->company
             ]
         ];
     }

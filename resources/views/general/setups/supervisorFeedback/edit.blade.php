@@ -4,14 +4,14 @@
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <h5 class="title">Edit Employee Feedback Setup</h5>
-            <li class="breadcrumb-item"><a href="{{ route( auth()->user()->getRoles()[0]. '.setups.employee-feedback.index') }}">Employee Feedback Setups</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Employee Feedback Setup</li>
+            <h5 class="title">Edit Supervisor Feedback Setup</h5>
+            <li class="breadcrumb-item"><a href="{{ route( auth()->user()->getRoles()[0]. '.setups.supervisor-feedback.index') }}">Supervisor Feedback Setups</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Supervisor Feedback Setup</li>
         </ol>
     </nav>
     <div class="card card-dashboard">
         <div class="card-body">
-            <form method="post" action="{{ route(auth()->user()->getRoles()[0].'.setups.employee-feedback.update', $employeeFeedback) }}">
+            <form method="post" action="{{ route(auth()->user()->getRoles()[0].'.setups.supervisor-feedback.update', $supervisorFeedback) }}">
                 @csrf
                 <div class="row">
                 @if(auth()->user()->getRoles()[0] == 'superadmin')
@@ -62,7 +62,7 @@
                                 <option value="">Please Select</option>
                                 @foreach ( auth()->user()->companies as $company)
                                     <option value="{{$company->id}}"
-                                        {{ old('company', $employeeFeedback->company->id) == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
+                                        {{ old('company', $supervisorFeedback->company->id) == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
                                 @endforeach
                             </select>
                             @error('company')
@@ -79,7 +79,7 @@
                             <label class="form-label">Code<top class="text-danger">*</top></label>
                             <input name="code" type="text"
                                 class="form-control @error('code') is-invalid @enderror"
-                                value="{{ old('code', $employeeFeedback->code) }}">
+                                value="{{ old('code', $supervisorFeedback->code) }}">
 
                             @error('code')
                                 <div class="invalid-feedback">
@@ -94,7 +94,7 @@
                             <label class="form-label">Description</label>
                             <input name="description" type="text"
                                 class="form-control @error('description') is-invalid @enderror"
-                                value="{{ old('description', $employeeFeedback->description) }}">
+                                value="{{ old('description', $supervisorFeedback->description) }}">
 
                             @error('description')
                                 <div class="invalid-feedback">
@@ -110,7 +110,7 @@
                             <select name="active" class="form-select">
                                 <option value="1" selected>Active</option>
                                 <option value="0"
-                                    {{ old('active', $employeeFeedback->is_active) == '0' ? 'selected' : '' }}>
+                                    {{ old('active', $supervisorFeedback->is_active) == '0' ? 'selected' : '' }}>
                                         Inactive</option>
                             </select>
 
