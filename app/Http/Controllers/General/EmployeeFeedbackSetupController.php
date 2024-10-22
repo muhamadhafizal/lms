@@ -21,6 +21,7 @@ class EmployeeFeedbackSetupController extends Controller
         $employeeFeedbacks = EmployeeFeedbackSetup::with([
             'company'
         ])
+        ->roles(auth()->user()->getRoles()[0])
         ->latest()
         ->paginate(20)
         ->withQueryString();

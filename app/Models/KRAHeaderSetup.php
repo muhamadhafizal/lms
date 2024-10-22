@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeFeedbackSetup extends Model
+class KRAHeaderSetup extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'company_id',
-        'code',
-        'description',
+        'header',
+        'name',
         'is_active',
+        'is_copy',
     ];
 
     public function company()
@@ -21,9 +23,9 @@ class EmployeeFeedbackSetup extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function questions()
+    public function KRADescriptionSetups()
     {
-        return $this->hasMany(EmployeeFeedbackQuestion::class,'efs_id');
+        return $this->hasMany(KRADescriptionSetup::class,'kra_header_id');
     }
 
     public function scopeRoles($query, $roles)
@@ -36,5 +38,10 @@ class EmployeeFeedbackSetup extends Model
         }
 
         return $query;
+    }
+
+    public function scopeSearch(Builder $query): void
+    {
+        
     }
 }

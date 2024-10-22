@@ -4,6 +4,8 @@ use App\Http\Controllers\HRadmin\DashboardController;
 use App\Http\Controllers\General\ActivityLogController;
 use App\Http\Controllers\General\BatchSetupController;
 use App\Http\Controllers\General\EmployeeFeedbackSetupController;
+use App\Http\Controllers\General\KRAController;
+use App\Http\Controllers\General\KRASetupController;
 use App\Http\Controllers\General\SupervisorFeedbackSetupController;
 use App\Http\Controllers\HRAdmin\EmployeeController;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +75,17 @@ Route::prefix('hradmin')->name('hradmin.')->middleware(['auth','hradmin'])->grou
                 Route::name('update-question')->post('/update-question/{supervisorFeedbackQuestion}', 'updateQuestion');
                 Route::name('edit')->get('/edit/{supervisorFeedback}', 'edit');
                 Route::name('update')->post('/update/{supervisorFeedback}', 'update');
+            });
+        });
+
+        Route::name('kra.')->prefix('kra')->group(function (){
+            Route::controller(KRASetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+                Route::name('add')->get('/add', 'add');
+                Route::name('store')->post('/store', 'store');
+                Route::name('view')->get('/view/{kra}', 'view');
+                Route::name('edit')->get('/edit/{kra}', 'edit');
+                Route::name('update')->post('/update/{kra}', 'update');
             });
         });
     });

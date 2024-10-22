@@ -66,7 +66,7 @@
                 </a>
             </li>
             <li class="{{ active_check('superadmin/setups/kra', true) }}">
-                <a class="load-spinner" href="">
+                <a class="load-spinner" href="{{ route('superadmin.setups.kra.index') }}">
                     KRA
                 </a>
             </li>

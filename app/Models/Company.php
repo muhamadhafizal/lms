@@ -82,6 +82,21 @@ class Company extends Model
         return $this->hasMany(BatchSetup::class);
     }
 
+    public function employeeFeedbackSetups()
+    {
+        return $this->hasMany(EmployeeFeedbackSetup::class);
+    }
+
+    public function supervisorFeedbackSetups()
+    {
+        return $this->hasMany(SupervisorFeedbackSetup::class);
+    }
+
+    public function KRAHeaderSetups()
+    {
+        return $this->hasMany(KRAHeaderSetup::class);
+    }
+
     public function scopeSearch(Builder $query): void
     {
         

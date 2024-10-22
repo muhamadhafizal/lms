@@ -20,6 +20,7 @@ class SupervisorFeedbackSetupController extends Controller
         $supervisorFeedbacks = SupervisorFeedbackSetup::with([
             'company'
         ])
+        ->roles(auth()->user()->getRoles()[0])
         ->latest()
         ->paginate(20)
         ->withQueryString();

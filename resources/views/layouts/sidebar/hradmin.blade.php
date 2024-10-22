@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="{{ active_check('hradmin/setups/kra', true) }}">
-                <a class="load-spinner" href="">
+                <a class="load-spinner" href="{{ route('hradmin.setups.kra.index') }}">
                     KRA
                 </a>
             </li>

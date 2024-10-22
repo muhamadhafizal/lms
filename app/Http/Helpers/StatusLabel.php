@@ -30,3 +30,18 @@ if (! function_exists('getClientSubscribed')) {
     }
 }
 
+if (! function_exists('getStatusYesNo')) {
+    function getStatusYesNo(string $param): string
+    {
+        $message = '-';
+
+        if ($param == 1) {
+            $message = 'Yes';
+        } elseif ($param == 0) {
+            $message = 'No';
+        }
+
+        return $message;
+    }
+}
+

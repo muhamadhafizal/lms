@@ -25,4 +25,16 @@ class SupervisorFeedbackSetup extends Model
     {
         return $this->hasMany(SupervisorFeedbackQuestion::class,'sfs_id');
     }
+
+    public function scopeRoles($query, $roles)
+    {
+    
+        if($roles == 'hradmin') {
+            $query = $query->whereHas('company', function ($q) {
+                $q->whereIn('id', auth()->user()->companies->pluck('id')->toArray());
+            });
+        }
+
+        return $query;
+    }
 }
