@@ -4,6 +4,7 @@ use App\Http\Controllers\HRadmin\DashboardController;
 use App\Http\Controllers\General\ActivityLogController;
 use App\Http\Controllers\General\BatchSetupController;
 use App\Http\Controllers\General\EmployeeFeedbackSetupController;
+use App\Http\Controllers\General\KBASetupController;
 use App\Http\Controllers\General\KRAController;
 use App\Http\Controllers\General\KRASetupController;
 use App\Http\Controllers\General\SupervisorFeedbackSetupController;
@@ -86,6 +87,17 @@ Route::prefix('hradmin')->name('hradmin.')->middleware(['auth','hradmin'])->grou
                 Route::name('view')->get('/view/{kra}', 'view');
                 Route::name('edit')->get('/edit/{kra}', 'edit');
                 Route::name('update')->post('/update/{kra}', 'update');
+            });
+        });
+
+        Route::name('kba.')->prefix('kba')->group(function (){
+            Route::controller(KBASetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+                Route::name('form-add')->get('/form-add', 'formAdd');
+                Route::name('form-store')->post('/form-store', 'formStore');
+                Route::name('view')->get('/view/{kba}', 'view');
+                Route::name('edit')->get('/edit/{kba}', 'edit');
+                Route::name('update')->post('/update/{kba}', 'update');
             });
         });
     });

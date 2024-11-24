@@ -4,21 +4,21 @@
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <h5 class="title">New KRA Setup</h5>
-            <li class="breadcrumb-item"><a href="{{ route( auth()->user()->getRoles()[0]. '.setups.kra.index') }}">KRA Setups</a></li>
-            <li class="breadcrumb-item active" aria-current="page">New KRA Setup</li>
+            <h5 class="title">New KBA Setup</h5>
+            <li class="breadcrumb-item"><a href="{{ route( auth()->user()->getRoles()[0]. '.setups.kba.index') }}">KBA Setups</a></li>
+            <li class="breadcrumb-item active" aria-current="page">New KBA Setup</li>
         </ol>
     </nav>
     <div class="card card-dashboard">
         <div class="card-body">
-            <form method="post" action="{{ route(auth()->user()->getRoles()[0].'.setups.kra.store') }}">
+            <form method="post" action="{{ route(auth()->user()->getRoles()[0].'.setups.kba.form-store') }}">
                 @csrf
                 <div class="row">
                     @if( auth()->user()->getRoles()[0] == 'superadmin' )
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">Client<top class="text-danger">*</top></label>
-                            <select id="client" name="client" class="form-select @error('client') is-invalid @enderror" required>
+                            <select id="client" name="client" class="form-select @error('client') is-invalid @enderror">
                                 <option value="">Please Select</option>
                                 @foreach ($clients as $client)
                                     <option value="{{ $client->id }}"
@@ -57,7 +57,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">Company<top class="text-danger">*</top></label>
-                            <select class="form-select @error('company') is-invalid @enderror" name="company" required>
+                            <select class="form-select @error('company') is-invalid @enderror" name="company">
                                 <option value="">Please Select</option>
                                 @foreach ( auth()->user()->companies as $company)
                                     <option value="{{$company->id}}">{{ $company->name }}</option>
@@ -74,6 +74,35 @@
 
                     <div class="col-md-6">
                         <div class="mb-3">
+                            <label class="form-label">Code<top class="text-danger">*</top></label>
+                            <input name="code" type="text"
+                                class="form-control @error('code') is-invalid @enderror"
+                                value="{{ old('code') }}">
+                            @error('code')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Description<top class="text-danger">*</top></label>
+                            <input name="form_description" type="text"
+                                class="form-control @error('form_description') is-invalid @enderror"
+                                value="{{ old('form_description') }}">
+
+                            @error('form_description')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
                             <label class="form-label">Header<top class="text-danger">*</top></label>
                             <select id="header-select" name="header" class="form-select @error('header') is-invalid @enderror" required>
                                 <option value="">Please Select</option>
@@ -85,21 +114,6 @@
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Name<top class="text-danger">*</top></label>
-                            <input name="name" type="text"
-                                class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name') }}" required>
-
-                            @error('name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
                             @enderror
                         </div>
                     </div>
@@ -124,7 +138,6 @@
                 <div id="form-fields-container" class="row">
                     <!-- The form fields will be dynamically injected here -->
                 </div>
-
                 <div class="row justify-content-center mt-5 mb-3">
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-main btn-lg w-100">Save</button>
@@ -133,5 +146,5 @@
             </form>
         </div>
     </div>
-    @include ('general.setups.kra.script')
+    @include ('general.setups.kba.script-form-add')
 @endsection

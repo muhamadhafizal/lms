@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li class="{{ active_check('superadmin/setups/kba', true) }}">
-                <a class="load-spinner" href="">
+                <a class="load-spinner" href="{{ route('superadmin.setups.kba.index') }}">
                     KBA
                 </a>
             </li>

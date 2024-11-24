@@ -7,6 +7,7 @@ use App\Http\Controllers\Superadmin\UserController;
 use App\Http\Controllers\General\ActivityLogController;
 use App\Http\Controllers\General\BatchSetupController;
 use App\Http\Controllers\General\EmployeeFeedbackSetupController;
+use App\Http\Controllers\General\KBASetupController;
 use App\Http\Controllers\General\KRAController;
 use App\Http\Controllers\General\KRASetupController;
 use App\Http\Controllers\General\SupervisorFeedbackSetupController;
@@ -122,6 +123,26 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
                 Route::name('view')->get('/view/{kra}', 'view');
                 Route::name('edit')->get('/edit/{kra}', 'edit');
                 Route::name('update')->post('/update/{kra}', 'update');
+            });
+        });
+
+        Route::name('kba.')->prefix('kba')->group(function (){
+            Route::controller(KBASetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+                Route::name('form-add')->get('/form-add', 'formAdd');
+                Route::name('form-store')->post('/form-store', 'formStore');
+                Route::name('form-edit')->get('/form-edit/{kbaForm}', 'formEdit');
+                Route::name('form-update')->post('/form-update/{kbaForm}', 'formUpdate');
+                Route::name('form-view')->get('/form-view/{kbaForm}', 'formView');
+                Route::name('set-add')->get('/set-add/{kbaForm}', 'setAdd');
+                Route::name('set-store')->post('/set-store/{kbaForm}', 'setStore');
+                Route::name('set-edit')->get('/set-edit/{kbaForm}', 'setEdit');
+                Route::name('set-update')->post('/set-update/{kbaForm}', 'setUpdate');
+                Route::name('view')->get('/view/{kba}', 'view');
+                Route::name('edit')->get('/edit/{kba}', 'edit');
+                Route::name('update')->post('/update/{kba}', 'update');
+                Route::name('set-copy')->get('/set-copy/{kbaForm}', 'setCopy');
+                Route::name('set-copy-store')->post('/set-copy-store/{kbaForm}', 'setCopyStore');
             });
         });
     });

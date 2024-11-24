@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="{{ active_check('hradmin/setups/kba', true) }}">
-                <a class="load-spinner" href="">
+                <a class="load-spinner" href="{{ route('hradmin.setups.kba.index') }}">
                     KBA
                 </a>
             </li>

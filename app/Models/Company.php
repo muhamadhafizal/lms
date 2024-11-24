@@ -97,6 +97,11 @@ class Company extends Model
         return $this->hasMany(KRAHeaderSetup::class);
     }
 
+    public function KBAForms()
+    {
+        return $this->hasMany(KBAForm::class);
+    }
+
     public function scopeSearch(Builder $query): void
     {
         
