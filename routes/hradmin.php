@@ -95,9 +95,18 @@ Route::prefix('hradmin')->name('hradmin.')->middleware(['auth','hradmin'])->grou
                 Route::name('index')->get('/', 'index');
                 Route::name('form-add')->get('/form-add', 'formAdd');
                 Route::name('form-store')->post('/form-store', 'formStore');
+                Route::name('form-edit')->get('/form-edit/{kbaForm}', 'formEdit');
+                Route::name('form-update')->post('/form-update/{kbaForm}', 'formUpdate');
+                Route::name('form-view')->get('/form-view/{kbaForm}', 'formView');
+                Route::name('set-add')->get('/set-add/{kbaForm}', 'setAdd');
+                Route::name('set-store')->post('/set-store/{kbaForm}', 'setStore');
+                Route::name('set-edit')->get('/set-edit/{kbaForm}', 'setEdit');
+                Route::name('set-update')->post('/set-update/{kbaForm}', 'setUpdate');
                 Route::name('view')->get('/view/{kba}', 'view');
                 Route::name('edit')->get('/edit/{kba}', 'edit');
                 Route::name('update')->post('/update/{kba}', 'update');
+                Route::name('set-copy')->get('/set-copy/{kbaForm}', 'setCopy');
+                Route::name('set-copy-store')->post('/set-copy-store/{kbaForm}', 'setCopyStore');
             });
         });
     });
