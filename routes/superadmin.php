@@ -5,6 +5,7 @@ use App\Http\Controllers\SuperAdmin\ClientController;
 use App\Http\Controllers\Superadmin\CompanyController;
 use App\Http\Controllers\Superadmin\UserController;
 use App\Http\Controllers\General\ActivityLogController;
+use App\Http\Controllers\General\AppraisalFormSetupController;
 use App\Http\Controllers\General\BatchSetupController;
 use App\Http\Controllers\General\EmployeeFeedbackSetupController;
 use App\Http\Controllers\General\KBASetupController;
@@ -143,6 +144,19 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
                 Route::name('update')->post('/update/{kba}', 'update');
                 Route::name('set-copy')->get('/set-copy/{kbaForm}', 'setCopy');
                 Route::name('set-copy-store')->post('/set-copy-store/{kbaForm}', 'setCopyStore');
+            });
+        });
+    });
+
+    Route::name('appraisals.')->prefix('appraisals')->group(function (){
+        Route::name('form-setups.')->prefix('form-setups')->group(function (){
+            Route::controller(AppraisalFormSetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+                Route::name('add')->get('/add', 'add');
+                Route::name('store')->post('/store', 'store');
+                Route::name('edit')->get('/edit/{appraisalSetup}', 'edit');
+                Route::name('update')->post('/update/{appraisalSetup}', 'update');
+                Route::name('view')->get('/view/{appraisalSetup}', 'view');
             });
         });
     });

@@ -111,6 +111,14 @@ Route::prefix('hradmin')->name('hradmin.')->middleware(['auth','hradmin'])->grou
         });
     });
 
+    Route::name('appraisals.')->prefix('appraisals')->group(function (){
+        Route::name('form-setups.')->prefix('form-setups')->group(function (){
+            Route::controller(AppraisalFormSetupController::class)->group(function (){
+                Route::name('index')->get('/', 'index');
+            });
+        });
+    });
+
     Route::name('activity-log.')->prefix('activity-log')->group(function (){
         Route::controller(ActivityLogController::class)->group(function (){
             Route::name('index')->get('/', 'index');

@@ -17,10 +17,11 @@ return new class extends Migration
             $table->foreignId('batch_id')->constrained('batch_setups')->cascadeOnDelete();
             $table->string('code')->nullable();
             $table->string('description')->nullable();
-            $table->timestamps('review_start_date');
-            $table->timestamps('review_end_date');
-            $table->timestamps('rating_start_date');
-            $table->timestamps('rating_end_date');
+            $table->string('category')->nullable();
+            $table->timestamp('review_start_date');
+            $table->timestamp('review_end_date');
+            $table->timestamp('rating_start_date');
+            $table->timestamp('rating_end_date');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

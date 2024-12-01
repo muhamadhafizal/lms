@@ -16,6 +16,26 @@
         </a>
     </li>
 
+    <div class="seperator"></div>
+    <li
+        class="dropdown-toggle {{ active_check('hradmin/appraisals', true) }}">
+        <a href="#appraisal" data-bs-toggle="collapse" aria-expanded="false" class="mb-0">
+            <div class="sidebar-icon">
+                <i class='bx bx-task'></i>
+            </div>
+            Appraisals <i
+                class="bx bx-chevron-down {{ active_route('hradmin.appraisals.*') == 'active' ? 'down' : '' }}"></i>
+        </a>
+        <ul class="collapse list-unstyled {{ active_route('hradmin.appraisals.*') == 'active' ? 'show' : '' }}"
+            id="appraisal">
+            <li class="{{ active_check('hradmin/appraisals', true) }}">
+                <a class="load-spinner" href="{{ route('hradmin.appraisals.form-setups.index') }}">
+                    Form Setups
+                </a>
+            </li>
+        </ul>
+    </li>
+
 <div class="seperator">Settings</div>
     <li
         class="dropdown-toggle {{ active_check('hradmin/setups', true) }}">
