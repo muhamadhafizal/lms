@@ -85,6 +85,11 @@ class User extends Authenticatable
         return $this->belongsToMany(SecurityGroup::class)->withTimestamps();
     }
 
+    public function appraisalSetups()
+    {
+        return $this->belongsToMany(AppraisalSetup::class, 'appraisal_staff', 'user_id', 'appraisal_setup_id');
+    }
+
     public function scopeRole($query, $roles)
     {
         $query = $query->whereHas('roles', function ($q) use ($roles) {

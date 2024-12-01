@@ -102,6 +102,11 @@ class Company extends Model
         return $this->hasMany(KBAForm::class);
     }
 
+    public function AppraisalSetups()
+    {
+        return $this->hasMany(AppraisalSetup::class);
+    }
+
     public function scopeSearch(Builder $query): void
     {
         

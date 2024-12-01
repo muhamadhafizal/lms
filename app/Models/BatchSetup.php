@@ -37,6 +37,11 @@ class BatchSetup extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function appraisalSetups()
+    {
+        return $this->hasMany(AppraisalSetup::class);
+    }
+
     public function scopeRoles($query, $roles)
     {
     
