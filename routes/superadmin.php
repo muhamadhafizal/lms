@@ -157,6 +157,7 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
                 Route::name('edit')->get('/edit/{appraisalSetup}', 'edit');
                 Route::name('update')->post('/update/{appraisalSetup}', 'update');
                 Route::name('view')->get('/view/{appraisalSetup}', 'view');
+                Route::name('part-store')->post('/add-part/{appraisalSetup}', 'partStore');
             });
         });
     });

@@ -121,8 +121,10 @@
                 </div>
                 @else
                 <div class="col-lg-6 d-flex justify-content-lg-end justify-content-md-start justify-content-center flex-md-row flex-column">
-                    <a href="" type="button" class="btn btn-main pt-2 pb-2 px-3 me-2">
-                        New Appraisal Set</a>
+                    <a href="#" type="button" class="btn btn-main pt-2 pb-2 px-3 me-2"
+                        data-bs-toggle="modal" data-bs-target="#modal-part-add">
+                        Add Appraisal Set
+                    </a>
                     <a href="" type="button" class="btn btn-main pt-2 pb-2 px-3">
                         Copy Appraisal Set</a>
                 </div>
@@ -137,5 +139,5 @@
             </div>
         </div>
     </div>
-
+    @include ('general.appraisals.form-setup.modal.modal-part-add')
 @endsection

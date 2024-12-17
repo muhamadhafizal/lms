@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HRadmin\DashboardController;
 use App\Http\Controllers\General\ActivityLogController;
+use App\Http\Controllers\General\AppraisalFormSetupController;
 use App\Http\Controllers\General\BatchSetupController;
 use App\Http\Controllers\General\EmployeeFeedbackSetupController;
 use App\Http\Controllers\General\KBASetupController;
@@ -115,6 +116,12 @@ Route::prefix('hradmin')->name('hradmin.')->middleware(['auth','hradmin'])->grou
         Route::name('form-setups.')->prefix('form-setups')->group(function (){
             Route::controller(AppraisalFormSetupController::class)->group(function (){
                 Route::name('index')->get('/', 'index');
+                Route::name('add')->get('/add', 'add');
+                Route::name('store')->post('/store', 'store');
+                Route::name('edit')->get('/edit/{appraisalSetup}', 'edit');
+                Route::name('update')->post('/update/{appraisalSetup}', 'update');
+                Route::name('view')->get('/view/{appraisalSetup}', 'view');
+                Route::name('part-store')->post('/add-part/{appraisalSetup}', 'partStore');
             });
         });
     });
