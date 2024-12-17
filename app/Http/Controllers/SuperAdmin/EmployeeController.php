@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin;
+namespace App\Http\Controllers\superadmin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Superadmin\Employee\UpdateRequest;
