@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\ClientController;
-use App\Http\Controllers\Superadmin\CompanyController;
-use App\Http\Controllers\Superadmin\UserController;
+use App\Http\Controllers\SuperAdmin\CompanyController;
+use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\General\ActivityLogController;
 use App\Http\Controllers\General\AppraisalFormSetupController;
 use App\Http\Controllers\General\BatchSetupController;
