@@ -23,6 +23,6 @@ class ActivityLogController extends Controller
                 ->paginate(20)
                 ->withQueryString();
 
-        return view('general.activitylog.index', compact('activities', 'request'));
+        return view('general.activityLog.index', compact('activities', 'request'));
     }
 }
