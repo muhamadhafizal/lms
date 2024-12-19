@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HRadmin\DashboardController;
+use App\Http\Controllers\HRAdmin\DashboardController;
 use App\Http\Controllers\General\ActivityLogController;
 use App\Http\Controllers\General\AppraisalFormSetupController;
 use App\Http\Controllers\General\BatchSetupController;
