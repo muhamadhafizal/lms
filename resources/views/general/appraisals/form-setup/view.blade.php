@@ -107,7 +107,7 @@
         </div>
     </div>
     
-    <div class="card card-dashboard">
+    <div class="card card-dashboard mb-4">
         <div class="card-body">
             <div class="row align-items-center mb-4">
                 <div class="col-md-6 d-flex justify-content-start">
@@ -180,7 +180,7 @@
     </div>
 
     <div class="card card-dashboard">
-    <div class="card-body">
+        <div class="card-body">
             <div class="row align-items-center mb-4">
                 <div class="col-md-6 d-flex justify-content-start">
                     <ol class="breadcrumb">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Supervisor\DashboardController;
 use App\Http\Controllers\General\ActivityLogController;
+use App\Http\Controllers\General\StaffAppraisalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,14 @@ Route::prefix('supervisor')->name('supervisor.')->middleware(['auth','supervisor
     Route::controller(DashboardController::class)->group(function (){
         Route::name('index')->get('/','index');
         Route::name('show')->get('/show','index');
+    });
+
+     //Appraisals
+     Route::name('appraisals.')->prefix('appraisals')->group(function (){
+        Route::controller(StaffAppraisalController::class)->group(function (){
+            Route::name('index')->get('/', 'index');
+            Route::name('view')->get('/view/{appraisalSetup}', 'view');
+        });
     });
 
     Route::name('activity-log.')->prefix('activity-log')->group(function (){
