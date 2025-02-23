@@ -158,6 +158,10 @@ Route::middleware(['auth','superadmin'])->prefix('superadmin')->name('superadmin
                 Route::name('update')->post('/update/{appraisalSetup}', 'update');
                 Route::name('view')->get('/view/{appraisalSetup}', 'view');
                 Route::name('part-store')->post('/add-part/{appraisalSetup}', 'partStore');
+                Route::name('part-delete')->get('/delete-part/{appraisalPart}', 'partDelete');
+                Route::name('part-update')->put('/update-part/{appraisalPart}', 'partUpdate');
+                Route::name('staff-store')->post('/add-staff/{appraisalSetup}', 'staffStore');
+                Route::name('staff-delete')->get('/delete-staff/{appraisalStaff}', 'staffDelete');
             });
         });
     });

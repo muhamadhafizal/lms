@@ -8,6 +8,7 @@ use App\Http\Requests\General\Appraisal\FormSetup\StorePartRequest;
 use App\Http\Requests\General\Appraisal\FormSetup\StoreRequest;
 use App\Models\AppraisalPart;
 use App\Models\AppraisalSetup;
+use App\Models\AppraisalStaff;
 use App\Models\BatchSetup;
 use App\Models\Client;
 use App\Models\Company;
@@ -16,6 +17,7 @@ use App\Models\EmployeeFeedbackSetup;
 use App\Models\KBAForm;
 use App\Models\KRAHeaderSetup;
 use App\Models\SupervisorFeedbackSetup;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AppraisalFormSetupController extends Controller
@@ -100,6 +102,10 @@ class AppraisalFormSetupController extends Controller
             return $part;
         });
 
+        $appraisalStaffs = $appraisalSetup->appraisalStaffs->load([
+            'user.employee',
+            'user.companies',
+        ]);
 
         //KRA
         $kraSetups = KRAHeaderSetup::with([
@@ -120,7 +126,15 @@ class AppraisalFormSetupController extends Controller
             'KBA' => $kbaForms,
         ];
 
-        return view('general.appraisals.form-setup.view', compact('appraisalSetup','appraisalParts','listOfParts'));
+        //ListOfStaffs
+        $listOfStaffs = User::with('companies.client')
+            ->role(['supervisor', 'employee'])
+            ->whereHas('companies', function ($query) use ($appraisalSetup) {
+                $query->where('companies.id', $appraisalSetup->company_id);
+            })
+            ->get();
+
+        return view('general.appraisals.form-setup.view', compact('appraisalSetup','appraisalParts','listOfParts','appraisalStaffs','listOfStaffs'));
     }
 
     public function partStore(StorePartRequest $request,AppraisalSetup $appraisalSetup)
@@ -150,5 +164,36 @@ class AppraisalFormSetupController extends Controller
         $appraisalPart->update($request->all());
 
         return back()->with('successMessage', 'Successfully update part');
+    }
+
+    public function staffStore(Request $request,AppraisalSetup $appraisalSetup)
+    {
+        $request->validate([
+            'staff_id' => 'required|array', // Ensure it's an array
+            'staff_id.*' => 'exists:users,id' // Validate each selected ID
+        ]);
+
+        foreach ($request->staff_id as $staffId) {
+            if (AppraisalStaff::where('appraisal_setup_id', $appraisalSetup->id)
+                ->where('user_id', $staffId)
+                ->exists()) {
+                return back()->with('errorMessage', 'This staff is already added');
+            }
+            AppraisalStaff::create([
+                'appraisal_setup_id' => $appraisalSetup->id,
+                'user_id' => $staffId,
+            ]);
+            //send email
+        }
+
+        return back()->with('successMessage', 'Successfully add new staff');
+        
+    }
+
+    public function staffDelete(AppraisalStaff $appraisalStaff)
+    {
+        $appraisalStaff->delete();
+
+        return back()->with('successMessage', 'Successfully delete staff');
     }
 }

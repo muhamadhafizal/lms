@@ -106,6 +106,7 @@
             </div>
         </div>
     </div>
+    
     <div class="card card-dashboard">
         <div class="card-body">
             <div class="row align-items-center mb-4">
@@ -177,5 +178,67 @@
             </div>
         </div>
     </div>
+
+    <div class="card card-dashboard">
+    <div class="card-body">
+            <div class="row align-items-center mb-4">
+                <div class="col-md-6 d-flex justify-content-start">
+                    <ol class="breadcrumb">
+                        <h5 class="title">Invite Staff</h5>
+                    </ol>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-md-start justify-content-center flex-md-row flex-column">
+                    <a href="#" type="button" class="btn btn-main pt-2 pb-2 px-3 me-2"
+                        data-bs-toggle="modal" data-bs-target="#modal-staff-add">
+                        Add Staff
+                    </a>
+                </div>
+            </div>
+            <div class="row align-items-center mb-4">
+                @if (count($appraisalStaffs))
+                    <div class="table-responsive">
+                        <table class="table table-striped text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Role</th>
+                                    <th class="text-center">Company Name</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($appraisalStaffs as $key =>$staff)
+                                    <tr>
+                                        <td class="text-center">
+                                            {{ $staff->user->user_name }}
+                                        </td>
+                                        <td class="text-center">{!! getRoleBadge($staff->user->getRoles()[0]) !!}</td>
+                                        <td class="text-center">
+                                        @if($staff->user->companies->isNotEmpty())
+                                            @foreach($staff->user->companies as $company)
+                                                {{ $company->name }}{{ !$loop->last ? ', ' : '' }}
+                                            @endforeach
+                                        @else
+                                            -
+                                        @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{  route( auth()->user()->getRoles()[0].'.appraisals.form-setups.staff-delete', $staff) }}"
+                                                class="btn btn-outline-danger confirm-delete" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="Remove Staff"><i
+                                                    class="bx bxs-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    @include('errors.no-data')
+                @endif
+            </div>
+        </div>
+    </div>
     @include ('general.appraisals.form-setup.modal.modal-part-add')
+    @include ('general.appraisals.form-setup.modal.modal-staff-add')
 @endsection

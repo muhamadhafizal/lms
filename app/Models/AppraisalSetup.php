@@ -38,6 +38,11 @@ class AppraisalSetup extends Model
         return $this->hasMany(AppraisalPart::class);
     }
 
+    public function appraisalStaffs()
+    {
+        return $this->hasMany(AppraisalStaff::class);
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'appraisal_staff', 'appraisal_setup_id', 'user_id');
