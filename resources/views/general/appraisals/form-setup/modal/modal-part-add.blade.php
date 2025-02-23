@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label class="form-label">Weightage <top class="text-danger">*</top> </label>
+                            <label class="form-label">Weightage %<top class="text-danger">*</top> </label>
                             <input type="number" class="form-control" name="weightage" value="{{ request('weightage') }}" placeholder="Title" required>
                         </div>
                     </div>

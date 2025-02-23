@@ -114,63 +114,25 @@
                         <h5 class="title">Appraisal Form (Part)</h5>
                     </ol>
                 </div>
+                <!-- @if(count($appraisalParts))
+                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-md-start justify-content-center flex-md-row flex-column">
+                    <a href="" class="btn btn-outline-secondary"><i
+                    class="bx bxs-pencil"></i> Edit</a>
+                </div>
+                @else -->
                 <div class="col-lg-6 d-flex justify-content-lg-end justify-content-md-start justify-content-center flex-md-row flex-column">
                     <a href="#" type="button" class="btn btn-main pt-2 pb-2 px-3 me-2"
                         data-bs-toggle="modal" data-bs-target="#modal-part-add">
                         Add Appraisal Set
                     </a>
-                    @if($appraisalParts->isEmpty())
                     <a href="" type="button" class="btn btn-main pt-2 pb-2 px-3">
                         Copy Appraisal Set</a>
-                    @endif
                 </div>
+                <!-- @endif -->
             </div>
             <div class="row align-items-center mb-4">
                 @if (count($appraisalParts))
-                    <div class="table-responsive">
-                        <table class="table table-striped text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">Target</th>
-                                    <th class="text-center">Part Title</th>
-                                    <th class="text-center">Weightage</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($appraisalParts as $key =>$appraisalPart)
-                                    <tr>
-                                        <td class="text-center">
-                                            {{ $appraisalPart->related_model?->{$appraisalPart->model === 'KRA' ? 'name' : 'code'} ?? $appraisalPart->model }}
-                                        </td>
-                                        <td class="text-center">{{ $appraisalPart->title }}</td>
-                                        <td class="text-center">{{ $appraisalPart->weightage }}%</td>
-                                        <td class="text-center">
-                                            <a href=""
-                                                class="btn btn-outline-secondary"
-                                                data-bs-toggle="modal" data-bs-target="#modal-part-edit-{{ $key }}"><i
-                                                    class="bx bxs-pencil"></i></a>
-                                                @include('general.appraisals.form-setup.modal.modal-part-edit')
-                                            <a href="{{  route( auth()->user()->getRoles()[0].'.appraisals.form-setups.part-delete', $appraisalPart) }}"
-                                                class="btn btn-outline-danger confirm-delete" data-bs-toggle="tooltip"
-                                                data-bs-placement="bottom" title="delete Appraisal Setup"><i
-                                                    class="bx bxs-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                <tr>
-                                <td ></td>
-                                <td class="text-center">
-                                <strong>Total Weightage :</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>{{ $appraisalParts->sum('weightage') }}%</strong>
-                                </td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
                 @else
                     @include('errors.no-data')
                 @endif

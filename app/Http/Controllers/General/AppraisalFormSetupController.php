@@ -95,10 +95,14 @@ class AppraisalFormSetupController extends Controller
 
     public function view(AppraisalSetup $appraisalSetup)
     {
-        $appraisalParts = $appraisalSetup->appraisalParts()->get();
+        $appraisalParts = $appraisalSetup->appraisalParts()->get()->map(function ($part) {
+            $part->related_model = $part->relatedModel(); // Call the method
+            return $part;
+        });
 
-          //KRA
-          $kraSetups = KRAHeaderSetup::with([
+
+        //KRA
+        $kraSetups = KRAHeaderSetup::with([
             'company'
         ])
         ->where('company_id', $appraisalSetup->company_id)
@@ -125,7 +129,26 @@ class AppraisalFormSetupController extends Controller
 
         $aprraisalPart = AppraisalPart::create([
             'appraisal_setup_id' => $appraisalSetup->id,
-            'group' => $group,
+            'part_id' => $partId,
+            'model' => $group,
+            'title' => $request->title,
+            'weightage' => $request->weightage,
         ]); 
+
+        return to_route( auth()->user()->getRoles()[0].'.appraisals.form-setups.view', $appraisalSetup)->with('successMessage', 'Successfully add new part');
+    }
+
+    public function partDelete(AppraisalPart $appraisalPart)
+    {
+        $appraisalPart->delete();
+
+        return back()->with('successMessage', 'Successfully delete part');
+    }
+
+    public function partUpdate(Request $request,AppraisalPart $appraisalPart)
+    {
+        $appraisalPart->update($request->all());
+
+        return back()->with('successMessage', 'Successfully update part');
     }
 }
