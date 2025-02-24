@@ -34,8 +34,8 @@ class AppraisalPart extends Model
     {
         // Define a mapping of model identifiers to actual model classes
         $models = [
-            'KRA' => \App\Models\KraHeaderSetup::class,
-            'KBA' => \App\Models\KbaForm::class,
+            'KRA' => \App\Models\KRAHeaderSetup::class,
+            'KBA' => \App\Models\KBAForm::class,
         ];
 
         // Check if the model exists in the mapping
