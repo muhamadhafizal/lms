@@ -70,26 +70,6 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class,'causer_id');
     }
 
-    public function companies()
-    {
-        return $this->belongsToMany(Company::class)->withTimestamps();
-    }
-
-    public function employee()
-    {
-        return $this->hasOne(Employee::class);
-    }
-
-    public function securityGroups()
-    {
-        return $this->belongsToMany(SecurityGroup::class)->withTimestamps();
-    }
-
-    public function appraisalSetups()
-    {
-        return $this->belongsToMany(AppraisalSetup::class, 'appraisal_staff', 'user_id', 'appraisal_setup_id');
-    }
-
     public function scopeRole($query, $roles)
     {
         $query = $query->whereHas('roles', function ($q) use ($roles) {
