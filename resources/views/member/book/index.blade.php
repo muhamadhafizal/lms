@@ -18,11 +18,6 @@
                             <button class="btn btn-main" type="submit">Search</button>
                         </div>
                     </form>
-                    <a href="javascript:void(0);"
-                        class="btn btn-outline-main px-3 d-flex align-items-center justify-content-center ms-2"
-                        data-bs-toggle="modal" data-bs-target="#filterAirlineModal">
-                        <i class="bx bxs-filter-alt"></i>
-                    </a>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center flex-md-row flex-column">
                     <button type="button"
