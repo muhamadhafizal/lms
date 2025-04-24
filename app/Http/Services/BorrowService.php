@@ -6,7 +6,7 @@ use App\Models\Loan;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 
-class BorrowingService
+class BorrowService
 {
 
     public static function getIndex($request)
