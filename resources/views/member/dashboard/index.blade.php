@@ -39,7 +39,6 @@
                             <th>Title</th>
                             <th>Author</th>
                             <th>ISBN</th>
-                            <th>Borrower</th>
                             <th>Borrowed Date</th>
                         </tr>
                     </thead>
@@ -50,7 +49,6 @@
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->isbn }}</td>
-                                <td>{{ $book->borrower_name ?? 'N/A' }}</td>
                                 <td>{{ \Carbon\Carbon::parse($book->borrowed_at)->format('d M Y') }}</td>
                             </tr>
                         @empty
