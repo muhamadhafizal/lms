@@ -3,7 +3,7 @@
 @section('content')
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb pb-0">
-            <h5 class="title mb-0">List of Books (0)</h5>
+            <h5 class="title mb-0">List of Books ({{ $books->count() }})</h5>
         </ol>
     </nav>
 
@@ -23,6 +23,13 @@
                         data-bs-toggle="modal" data-bs-target="#filterAirlineModal">
                         <i class="bx bxs-filter-alt"></i>
                     </a>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center flex-md-row flex-column">
+                    <button type="button"
+                        class="btn btn-main px-3 d-flex align-items-center justify-content-center ms-md-2 mt-lg-0 mt-4"
+                        data-bs-toggle="modal" data-bs-target="#addBookModal" style="height:50px">
+                        Add New Book
+                    </button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -51,7 +58,9 @@
                                         {{ $book->isbn }}
                                     </td>
                                     <td class="text-center">
-                                        {{ $book->status }}
+                                        <span class="badge bg-{{ $book->status === 'AVAILABLE' ? 'success' : 'secondary' }}">
+                                            {{ $book->status }}
+                                        </span>
                                     </td>
                                     <td class="text-center">
                                         <div>
@@ -68,4 +77,5 @@
             </div>
         </div>
     </div>
+    @include('member.book.modal.add')
 @endsection
