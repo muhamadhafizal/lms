@@ -7,7 +7,7 @@
         </button>
 
         <a class="navbar-brand load-spinner" href="">
-            <img src="" class="img-fluid" alt="Logo">
+            <img src="{{ app_asset('images/logo.svg') }}" class="img-fluid" alt="Logo">
         </a>
 
         <ul class="list-unstyled justify-content-end navbar-right">
