@@ -1,7 +1,7 @@
 <div class="modal fade" id="addBookModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            
+
             <div class="modal-header">
                 <h1 class="modal-title fs-5">Add New Book</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -28,8 +28,11 @@
                     <div class="mb-3">
                         <label class="form-label">Status</label>
                         <select name="status" class="form-select">
-                            <option value="AVAILABLE" selected>AVAILABLE</option>
-                            <option value="BORROWED">BORROWED</option>
+                            @foreach ($status as $item)
+                                <option value="{{ $item->value }}">
+                                    {{ $item->label() }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
