@@ -34,8 +34,6 @@ Route::middleware(['auth', 'member'])->prefix('member')->name('member.')->group(
         });
     });
 
-  
-
 });
 
 

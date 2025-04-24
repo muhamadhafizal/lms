@@ -12,4 +12,8 @@ class BookController extends Controller
         $books = Books::get();
         return view('member.book.index', compact('request', 'books'));
     }
+
+    public function borrow(Request $request){
+        
+    }
 }
