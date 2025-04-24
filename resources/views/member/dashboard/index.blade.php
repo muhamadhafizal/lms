@@ -6,7 +6,7 @@
             <h5 class="title mb-0">Dashboard</h5>
         </ol>
     </nav>
-    <div class="row row-cols-lg-2 row-cols-2 px-2">
+    <div class="row row-cols-lg-2 row-cols-2">
         <div class="col mb-3">
             <div class="card shadow-sm border-3">
                 <div class="card-body text-center">
