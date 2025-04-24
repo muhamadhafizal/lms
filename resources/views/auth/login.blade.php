@@ -4,6 +4,8 @@
 ])
 
 @section('content')
+    <img src="{{ asset('images/logo.svg') }}" class="img-fluid mb-3" alt="Logo" loading="lazy">
+
     <div class="mb-2">Sign into your Library Management account</div>
 
 
