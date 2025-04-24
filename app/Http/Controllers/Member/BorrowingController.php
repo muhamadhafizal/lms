@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BorrowBookRequest;
 use App\Http\Services\BorrowService;
 use Illuminate\Http\Request;
+use App\Models\Loan;
 
 
 class BorrowingController extends Controller
@@ -23,5 +24,13 @@ class BorrowingController extends Controller
 
         return to_route('member.borrowing.index')->with('successMessage', 'Successfully borrowing book');
       
+    }
+
+    public function return(Loan $loan, Request $request)
+    {
+        $return = BorrowService::returnBook($loan, $request);
+
+        return to_route('member.borrowing.index')->with('successMessage', 'Successfully returning book');
+
     }
 }
