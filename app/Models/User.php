@@ -82,4 +82,10 @@ class User extends Authenticatable
 
         return $query;
     }
+
+      // Relationships
+      public function loans()
+      {
+          return $this->hasMany(Loan::class);
+      }
 }
