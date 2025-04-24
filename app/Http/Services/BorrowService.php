@@ -2,11 +2,12 @@
 
 namespace App\Http\Services;
 
+use App\Models\Book;
 use App\Models\Loan;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 
-class BorrowingService
+class BorrowService
 {
 
     public static function getIndex($request)
@@ -14,9 +15,39 @@ class BorrowingService
         $loans = Loan::query()
             ->with('book')
             ->where('member_id', auth()->user()->id)
+            ->where('returned_at', null)
             ->paginate(20)
             ->withQueryString();
 
         return $loans;
+    }
+
+    public static function borrow($request)
+    {
+        $loan = Loan::create([
+            'member_id' => auth()->user()->id,
+            'book_id' => $request->book_id,
+            'borrowed_at' => now(),
+            'due_at' => now()->addDays(14),
+        ]);
+
+        $book = $loan->book;
+        $book->update(['status' => 'BORROWED']);
+
+        return $loan;
+    }
+
+    public static function returnBook($loan, $request)
+    {
+        $loan->book->update([
+            'status' => 'AVAILABLE',
+        ]);
+
+        $loan->update([
+            'returned_at' => now(),
+        ]);
+
+        return $loan;
+
     }
 }

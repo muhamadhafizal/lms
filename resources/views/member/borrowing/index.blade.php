@@ -18,11 +18,48 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6 text-md-end text-center mt-md-0 mt-4">
-                    <a href="" class="btn btn-main pt-2 pb-2 px-3 load-spinner">New
-                        Borrow</a>
-                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="card card-dashboard mb-4">
+        <div class="card-body">
+            @if (count($loans))
+                <div class="table-responsive">
+                    <table class="table table-striped text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-center">Book</th>
+                                    <th class="text-center">Borrowed At</th>
+                                    <th class="text-center">Due At</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($loans as $key => $loan)
+                                    <tr>
+                                        <td class="text-center">{{ $loans->firstItem() + $key }}</td>
+                                        <td class="text-center">{{ $loan->book->title }}</td>
+                                        <td class="text-center">{{ $loan->borrowed_at }}</td>
+                                        <td class="text-center">{{ $loan->due_at }}</td>
+                                        <td class="text-center">
+                                            <div>
+                                                <a class="btn" data-bs-target="#return-modal-{{ $key }}" data-bs-toggle="modal">
+                                                    <u class="text-primary fw-bold">Return</u>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        @include('member.borrowing.modal.return')
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                    </table>
+                </div>
+                {{ $loans->links() }}
+            @else
+                @include('errors.no-data')
+            @endif
         </div>
     </div>
 

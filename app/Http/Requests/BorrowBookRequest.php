@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Books;
+use App\Models\Book;
 use App\Models\Loan;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class BorrowBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'book_id' => 'requierd|exists:books,id',
+            'book_id' => 'required|exists:books,id',
         ];
     }
 
@@ -38,8 +38,8 @@ class BorrowBookRequest extends FormRequest
                     ->whereNull('returned_at')
                     ->count();
             
-            if($currentLoan > 6){
-                $validator->errors()->add('You can only borrow up to 5 books.');
+            if($currentLoan >= 5){
+                $validator->errors()->add('book_id', 'You can only borrow up to 5 books.');
             }
 
             $availableBook = Book::where('id', $bookId)

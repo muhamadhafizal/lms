@@ -24,6 +24,7 @@ Route::middleware(['auth', 'member'])->prefix('member')->name('member.')->group(
         Route::name('show')->get('/show', 'index');
     });
 
+    Route::resource('book', BookController::class);
     Route::name('book.')->prefix('book')->group(function () {
         Route::name('index')->get('/', [BookController::class, 'index']);
     });
@@ -31,6 +32,8 @@ Route::middleware(['auth', 'member'])->prefix('member')->name('member.')->group(
     Route::name('borrowing.')->prefix('borrowing')->group(function (){
         Route::controller(BorrowingController::class)->group(function (){
             Route::name('index')->get('/', 'index');
+            Route::name('borrow')->post('/borrow', 'borrow');
+            Route::name('return')->post('/return/{loan}', 'return');
         });
     });
 
