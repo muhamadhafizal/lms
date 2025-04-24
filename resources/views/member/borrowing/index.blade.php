@@ -26,4 +26,40 @@
         </div>
     </div>
 
+    <div class="card card-dashboard mb-4">
+        <div class="card-body">
+            @if (count($loans))
+                <div class="table-responsive">
+                    <table class="table table-striped text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-center">Book</th>
+                                    <th class="text-center">Borrowed At</th>
+                                    <th class="text-center">Due At</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($loans as $key => $loan)
+                                    <tr>
+                                        <td>{{ $loans->firstItem() + $key }}</td>
+                                        <td>{{ $loan->book->title }}</td>
+                                        <td>{{ $loan->borrowed_at }}</td>
+                                        <td>{{ $loan->due_at }}</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-main pt-2 pb-2 px-3">Return</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                    </table>
+                </div>
+                {{ $loans->links() }}
+            @else
+                @include('errors.no-data')
+            @endif
+        </div>
+    </div>
+
 @endsection
