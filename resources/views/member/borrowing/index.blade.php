@@ -48,7 +48,7 @@
                                         <td>{{ $loan->borrowed_at }}</td>
                                         <td>{{ $loan->due_at }}</td>
                                         <td class="text-center">
-                                            <a href="{{  route('member.borrowing.return', $loan->id) }}" class="btn btn-main pt-2 pb-2 px-3">Return</a>
+                                            <a href="" class="btn btn-main pt-2 pb-2 px-3">Return</a>
                                         </td>
                                     </tr>
                                 @endforeach

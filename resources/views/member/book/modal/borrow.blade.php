@@ -33,8 +33,9 @@
             </div>
 
             <div class="modal-footer">
-                <form action="{{ route('member.book.index', $book->id) }}" method="POST">
+                <form action="{{ route('member.borrowing.borrow') }}" method="POST">
                     @csrf
+                    <input type="text" name="book_id" value="{{ $book->id }}" hidden>
                     <button type="submit" class="btn btn-primary" {{ $book->status !== 'AVAILABLE' ? 'disabled' : '' }}>
                         Confirm Book
                     </button>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Books;
+use App\Models\Book;
 use App\Models\Loan;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class BorrowBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'book_id' => 'requierd|exists:books,id',
+            'book_id' => 'required|exists:books,id',
         ];
     }
 
