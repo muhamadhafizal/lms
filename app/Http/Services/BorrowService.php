@@ -15,6 +15,7 @@ class BorrowService
         $loans = Loan::query()
             ->with('book')
             ->where('member_id', auth()->user()->id)
+            ->where('returned_at', null)
             ->paginate(20)
             ->withQueryString();
 
@@ -34,5 +35,19 @@ class BorrowService
         $book->update(['status' => 'BORROWED']);
 
         return $loan;
+    }
+
+    public static function returnBook($loan, $request)
+    {
+        $loan->book->update([
+            'status' => 'AVAILABLE',
+        ]);
+
+        $loan->update([
+            'returned_at' => now(),
+        ]);
+
+        return $loan;
+
     }
 }

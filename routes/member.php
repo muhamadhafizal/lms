@@ -33,6 +33,7 @@ Route::middleware(['auth', 'member'])->prefix('member')->name('member.')->group(
         Route::controller(BorrowingController::class)->group(function (){
             Route::name('index')->get('/', 'index');
             Route::name('borrow')->post('/borrow', 'borrow');
+            Route::name('return')->post('/return/{loan}', 'return');
         });
     });
 
