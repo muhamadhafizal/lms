@@ -24,6 +24,7 @@ Route::middleware(['auth', 'member'])->prefix('member')->name('member.')->group(
         Route::name('show')->get('/show', 'index');
     });
 
+    Route::resource('book', BookController::class);
     Route::name('book.')->prefix('book')->group(function () {
         Route::name('index')->get('/', [BookController::class, 'index']);
     });
