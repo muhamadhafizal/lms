@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($books as $book)
+                        @foreach ($books as $key => $book)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="text-center">
@@ -54,11 +54,15 @@
                                         {{ $book->status }}
                                     </td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-outline-main" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Airline Details">Book</a>
+                                        <div>
+                                            <a class="btn" data-bs-target="#borrow-modal-{{ $key }}" data-bs-toggle="modal">
+                                                <u class="text-primary fw-bold">Book</u>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
+                            @include('member.book.modal.borrow')
                         @endforeach
                 </table>
             </div>
