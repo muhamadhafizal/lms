@@ -19,120 +19,17 @@ class UserSeeder extends Seeder
     {
 
         // Create or update the superadmin user
-        $superadmin = User::updateOrCreate(
+        $member = User::updateOrCreate(
             [
-                'user_name' => 'superadmin'
+                'user_name' => 'member'
             ], 
             [
-                'user_email' => 'superadmin@pms.centralhr.com',
-                'password' => Hash::make('superadmin@1234'), 
-                'user_language' => 'English',
+                'user_email' => 'member@lms.com',
+                'password' => Hash::make('member@1234'), 
                 'email_verified_at' => now(),
             ]
         );
 
-        $superadminEmployee = Employee::updateOrCreate(
-            [
-                'user_id' => $superadmin->id
-            ]
-        );
-
-        // Get the first company (you might want to refine this query depending on your needs)
-        $company = Company::first();
-
-        if ($company) {
-            // Attach the user to the company
-            $superadmin->companies()->attach($company->id);
-        }
-
-        Bouncer::assign('superadmin')->to($superadmin);
-
-        // Create or update the HR admin user
-        $hradmin = User::updateOrCreate(
-            [
-                'user_name' => 'hradmin'
-            ], 
-            [
-                'user_email' => 'hradmin@pms.centralhr.com',
-                'password' => Hash::make('hradmin@1234'), 
-                'user_language' => 'English',
-                'email_verified_at' => now(),
-            ]
-        );
-
-        $hradminEmployee = Employee::updateOrCreate(
-            [
-                'user_id' => $hradmin->id
-            ]
-        );
-
-        // Get the first company (you might want to refine this query depending on your needs)
-        $company = Company::first();
-
-        if ($company) {
-            // Attach the user to the company
-            $hradmin->companies()->attach($company->id);
-        }
-
-        Bouncer::assign('hradmin')->to($hradmin);
-
-        // Create or update the supervisor user
-        $supervisor = User::updateOrCreate(
-            [
-                'user_name' => 'supervisor'
-            ], 
-            [
-                'user_email' => 'supervisor@pms.centralhr.com',
-                'password' => Hash::make('supervisor@1234'), 
-                'user_language' => 'English',
-                'email_verified_at' => now(),
-            ]
-        );
-
-        $supervisorEmployee = Employee::updateOrCreate(
-            [
-                'user_id' => $supervisor->id
-            ]
-        );
-
-        // Get the first company (you might want to refine this query depending on your needs)
-        $company = Company::first();
-
-        if ($company) {
-            // Attach the user to the company
-            $supervisor->companies()->attach($company->id);
-        }
-
-        Bouncer::assign('supervisor')->to($supervisor);
-
-        // Create or update the employee user
-        $employee = User::updateOrCreate(
-            [
-                'user_name' => 'employee'
-            ], 
-            [
-                'user_email' => 'employee@pms.centralhr.com',
-                'password' => Hash::make('employee@1234'), 
-                'user_language' => 'English',
-                'email_verified_at' => now(),
-            ]
-        );
-
-        // Get the first company (you might want to refine this query depending on your needs)
-        $company = Company::first();
-
-        if ($company) {
-            // Attach the user to the company
-            $employee->companies()->attach($company->id);
-        }
-
-        $employeedetails = Employee::updateOrCreate(
-            [
-                'user_id' => $employee->id
-            ]
-        );
-        
-
-        Bouncer::assign('employee')->to($employee);
+        Bouncer::assign('member')->to($member);
     }
 }

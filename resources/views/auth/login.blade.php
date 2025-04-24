@@ -1,12 +1,11 @@
 @extends('layouts.master.auth', [
     'title' => 'Sign In',
-    'description' => 'Sign into your PMS account',
+    'description' => 'Sign into your LMS account',
 ])
 
 @section('content')
-    <div class="mb-2">Sign into your Performance Management System account</div>
-    {{-- <p class="text-center text-xl-start pb-3 mb-3">Don’t have an account yet? <a href="{{ route('register') }}"
-            class="text-main">Register here.</a></p> --}}
+    <div class="mb-2">Sign into your Library Management account</div>
+
 
     @env(['staging', 'local'])
     <div class="alert alert-info">
@@ -61,14 +60,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="superadmin-login load-spinner">Login as Superadmin <i
-                                    class="bx bx-chevron-right"></i>
-                            </div>
-                            <div class="hradmin-login load-spinner">Login as HR Admin <i
-                                    class="bx bx-chevron-right"></i></div>
-                            <div class="supervisor-login load-spinner">Login as Supervisor <i
-                                    class="bx bx-chevron-right"></i></div>
-                            <div class="employee-login load-spinner">Login as Employee <i
+                            <div class="member-login load-spinner">Login as Member <i
                                     class="bx bx-chevron-right"></i></div>
                         </div>
                     </div>
@@ -81,24 +73,9 @@
 @env(['staging', 'local'])
 @section('script-custom')
     <script type="module">
-        $('.superadmin-login').on('click', function() {
-            $('input[name=user_email]').val('superadmin@pms.centralhr.com');
-            $('input[name=password]').val('superadmin@1234');
-            $('.btn-lg').click();
-        });
-        $('.hradmin-login').on('click', function() {
-            $('input[name=user_email]').val('hradmin@pms.centralhr.com');
-            $('input[name=password]').val('hradmin@1234');
-            $('.btn-lg').click();
-        });
-        $('.supervisor-login').on('click', function() {
-            $('input[name=user_email]').val('supervisor@pms.centralhr.com');
-            $('input[name=password]').val('supervisor@1234');
-            $('.btn-lg').click();
-        });
-        $('.employee-login').on('click', function() {
-            $('input[name=user_email]').val('employee@pms.centralhr.com');
-            $('input[name=password]').val('employee@1234');
+        $('.member-login').on('click', function() {
+            $('input[name=user_email]').val('member@lms.com');
+            $('input[name=password]').val('member@1234');
             $('.btn-lg').click();
         });
     </script>

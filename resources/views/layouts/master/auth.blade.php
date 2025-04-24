@@ -18,7 +18,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <i class="bx bx-place"></i>
-                                <img src="{{ asset('images/centralhrthree.png') }}" class="img-fluid mb-3" alt="Logo" loading="lazy">
                                 @yield ('content')
                             </div>
                         </div>

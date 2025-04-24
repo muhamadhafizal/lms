@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MustBeSuperadmin
+class MustBeMember
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class MustBeSuperadmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->isAn('superadmin')) {
+        if (auth()->user()->isAn('member')) {
             return $next($request);
         }
 
