@@ -3,7 +3,7 @@
 @section('content')
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb pb-0">
-            <h5 class="title mb-0">List of Books ({{ $books->count() }})</h5>
+            <h5 class="title mb-0">List of Books</h5>
         </ol>
     </nav>
 
@@ -28,47 +28,52 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped text-nowrap">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th class="text-center">Title</th>
-                            <th class="text-center">Author</th>
-                            <th class="text-center">ISBN</th>
-                            <th class="text-center">Availability</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($books as $key => $book)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td class="text-center">
-                                        {{ $book->title }}
-                                    </td>
-                                    <td class="text-center">
-                                        {{ $book->author }}
-                                    </td>
-                                    <td class="text-center">
-                                        {{ $book->isbn }}
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="badge bg-{{ $book->status === 'AVAILABLE' ? 'success' : 'secondary' }}">
-                                            {{ $book->status }}
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <div>
-                                            <a class="btn" data-bs-target="#borrow-modal-{{ $key }}" data-bs-toggle="modal">
-                                                <u class="text-primary fw-bold">Book</u>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            @include('member.book.modal.borrow')
-                        @endforeach
-                </table>
+                @if (count($books))
+                    <table class="table table-striped text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Author</th>
+                                <th class="text-center">ISBN</th>
+                                <th class="text-center">Availability</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($books as $key => $book)
+                                    <tr>
+                                        <td>{{ $books->firstItem() + $key }}</td>
+                                        <td class="text-center">
+                                            {{ $book->title }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $book->author }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $book->isbn }}
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-{{ $book->status === 'AVAILABLE' ? 'success' : 'secondary' }}">
+                                                {{ $book->status }}
+                                            </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div>
+                                                <a class="btn" data-bs-target="#borrow-modal-{{ $key }}" data-bs-toggle="modal">
+                                                    <u class="text-primary fw-bold">Book</u>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                @include('member.book.modal.borrow')
+                            @endforeach
+                    </table>
+                    {{ $books->links() }}
+                @else
+                    @include('errors.no-data')
+                @endif
             </div>
         </div>
     </div>

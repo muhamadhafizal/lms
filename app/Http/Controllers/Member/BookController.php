@@ -5,26 +5,22 @@ namespace App\Http\Controllers\Member;
 use App\Enums\BookStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookRequest;
+use App\Http\Services\BookService;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index(Request $request){
-        $books = Book::where('status', BookStatus::AVAILABLE->value)->get();
+    public function index(Request $request, BookService $bookService){
+        $books = $bookService->getIndex($request);
         $status = BookStatus::cases();
         return view('member.book.index', compact('request', 'books','status'));
     }
 
-    public function store(BookRequest $request)
+    public function store(BookRequest $request, BookService $bookService)
     {
         $title = $request->input('title');
-        $book = Book::create([
-            'title' => $title,
-            'author' => $request->input('author'),
-            'isbn' => $request->input('isbn'),
-            'status' => $request->input('status'),
-        ]);
+        $book = $bookService->addBook($request);
 
         return redirect()->route('member.book.index', $book->id)->with('successMessage', "$title successfully Added.");
     }
