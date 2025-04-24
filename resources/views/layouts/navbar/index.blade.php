@@ -7,7 +7,7 @@
         </button>
 
         <a class="navbar-brand load-spinner" href="">
-            <img src="{{ app_asset('images/centralhrthree.png') }}" class="img-fluid" alt="Logo">
+            <img src="" class="img-fluid" alt="Logo">
         </a>
 
         <ul class="list-unstyled justify-content-end navbar-right">
@@ -22,7 +22,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item load-spinner" role="button" href="{{ route('profile.show') }}">View Profile</a></li>
+                    <li><a class="dropdown-item load-spinner" role="button" href="">View Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item load-spinner" href="{{ route('logout') }}">Logout</a></li>
                 </ul>
