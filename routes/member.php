@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Member\BorrowingController;
 use App\Http\Controllers\Member\BookController;
 use App\Http\Controllers\Member\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,14 @@ Route::middleware(['auth', 'member'])->prefix('member')->name('member.')->group(
     Route::name('book.')->prefix('book')->group(function () {
         Route::name('index')->get('/', [BookController::class, 'index']);
     });
+
+    Route::name('borrowing.')->prefix('borrowing')->group(function (){
+        Route::controller(BorrowingController::class)->group(function (){
+            Route::name('index')->get('/', 'index');
+        });
+    });
+
+  
 
 });
 
