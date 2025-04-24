@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     $availableBooks = Book::where('status', 'AVAILABLE')->count();
     $borrowedBooks = Book::where('status', 'BORROWED')->count();
-    $currentBorrowedBooks = Book::where('status', 'BORROWED')->paginate(3);
+    $currentBorrowedBooks = Book::where('status', 'BORROWED')->orderBy('updated_at', 'desc')->paginate(3);
 
     return view('member.dashboard.index', compact('availableBooks', 'borrowedBooks', 'currentBorrowedBooks'));
 }
