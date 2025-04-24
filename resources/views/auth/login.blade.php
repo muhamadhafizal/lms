@@ -9,7 +9,7 @@
 
     @env(['staging', 'local'])
     <div class="alert alert-info">
-        <div class="text-danger mb-3">For Testing Purpose Only</div>
+        <div class="text-danger mb-3">For Testing Purpose Only!</div>
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Login Account
